@@ -10,13 +10,14 @@
 
 ### 1.1 Repository Scaffolding
 
-- [ ] Initialize pnpm workspace root with `pnpm-workspace.yaml`
-- [ ] Configure TypeScript (`tsconfig.json` base)
-- [ ] Set up `tsup` for bundling
-- [ ] Configure ESLint + Prettier
-- [ ] Set up Vitest
-- [ ] Configure Changesets for versioning
-- [ ] Create `packages/` directory structure
+- [x] Initialize pnpm workspace root with `pnpm-workspace.yaml`
+- [x] Configure TypeScript (`tsconfig.json` base)
+- [x] Set up `tsup` for bundling
+- [x] Configure ESLint + Prettier
+- [x] Set up Vitest
+- [x] Configure Changesets for versioning
+- [x] Create `packages/` directory structure
+- [x] Add `.gitignore`
 
 ### 1.2 @addresskit/core  -  Address Engine
 
