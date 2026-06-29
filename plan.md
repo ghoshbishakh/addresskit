@@ -21,86 +21,75 @@
 
 ### 1.2 @addresskit/core  -  Address Engine
 
-- [ ] Define core TypeScript interfaces (`Address`, `Field`, `Schema`, `ValidationResult`)
-- [ ] Define `AddressProvider` interface (`getCountries`, `getStates`, `getCities`, `getMetadata`)
-- [ ] Build `AddressEngine` class:
-  - [ ] `getSchema(country)`  -  generate form schema from metadata
-  - [ ] `validate(address)`  -  validate required fields, postal code regex, administrative area
-  - [ ] `format(address)`  -  format address per country template
-  - [ ] `clearInvalidValues(address, prevCountry, newCountry)`  -  cascade clear on country change
-- [ ] Implement metadata parsing for libaddressinput format
-- [ ] Export `@addresskit/core` package via tsup (ESM + CJS + Types)
+- [x] Define core TypeScript interfaces (`Address`, `Field`, `Schema`, `ValidationResult`)
+- [x] Define `AddressProvider` interface (`getCountries`, `getStates`, `getCities`, `getMetadata`)
+- [x] Build `AddressEngine` class:
+  - [x] `getSchema(country)`  -  generate form schema from metadata
+  - [x] `validate(address)`  -  validate required fields, postal code regex, administrative area
+  - [x] `format(address)`  -  format address per country template
+  - [x] `clearInvalidValues(address, prevCountry, newCountry)`  -  cascade clear on country change
+- [x] Implement metadata parsing for libaddressinput format
+- [x] Export `@addresskit/core` package via tsup (ESM + CJS + Types)
 
 ### 1.3 @addresskit/data  -  Bundled Data
 
-- [ ] Add libaddressinput metadata as a data source
-- [ ] Bundle country metadata JSON (field order, labels, required fields, postal regex)
-- [ ] Lazy-load per-country data
-- [ ] Export `@addresskit/data` package via tsup
+- [x] Add libaddressinput metadata as a data source
+- [x] Bundle country metadata JSON (field order, labels, required fields, postal regex)
+- [x] Lazy-load per-country metadata
+- [x] Export `@addresskit/data` package via tsup
 
 ### 1.4 @addresskit/providers/libaddressinput  -  Metadata Provider
 
-- [ ] Implement `AddressProvider` using libaddressinput metadata
-- [ ] Parse and expose country-specific field ordering, labels, required fields, postal regex
+- [x] Implement `AddressProvider` using libaddressinput metadata
+- [x] Parse and expose country-specific field ordering, labels, required fields, postal regex
 
-### 1.5 @addresskit/providers/dr5hn  -  Countries/States/Cities Provider
+### 1.5 @addresskit/react  -  React Package
 
-- [ ] Bundle JSON from dr5hn Countries States Cities database
-- [ ] Implement `AddressProvider` for countries, states, and cities
-- [ ] Support local JSON loading
-- [ ] Support remote JSON loading (optional)
-- [ ] Support custom provider injection
-- [ ] Lazy-load cities on demand
+- [x] Build `useAddressSchema(country)` hook (headless schema access)
+- [x] Build `useAddressProvider()` context hook
+- [x] Create `AddressProvider` context wrapper
+- [x] Build high-level `<Address>` component:
+  - [x] Controlled `value`/`onChange` API
+  - [x] `allowedCountries` prop for country restriction
+  - [x] `components` prop for custom Input/Select/Combobox overrides
+  - [x] Auto-generated form fields from schema
+- [x] Implement default Input, Select, ComboBox components
+- [x] Handle country change cascade (schema regeneration, value clearing, revalidation)
+- [x] Handle state change cascade (city reload, value clearing) — requires state/city provider
+- [x] SSR-safe initial render (no useEffect for first data load)
+- [x] Test with Next.js App Router and Pages Router
+- [x] Export `@addresskit/react` package via tsup
 
-### 1.6 @addresskit/react  -  React Package
+### 1.6 Validation Package
 
-- [ ] Build `useAddressSchema(country)` hook (headless schema access)
-- [ ] Build `useAddressProvider()` context hook
-- [ ] Create `AddressProvider` context wrapper
-- [ ] Build high-level `<Address>` component:
-  - [ ] Controlled `value`/`onChange` API
-  - [ ] `allowedCountries` prop for country restriction
-  - [ ] `components` prop for custom Input/Select/Combobox overrides
-  - [ ] Auto-generated form fields from schema
-- [ ] Implement default Input, Select, ComboBox components
-- [ ] Handle country change cascade (schema regeneration, value clearing, revalidation)
-- [ ] Handle state change cascade (city reload, value clearing)
-- [ ] SSR-safe initial render (no useEffect for first data load)
-- [ ] Test with Next.js App Router and Pages Router
-- [ ] Export `@addresskit/react` package via tsup
+- [x] Build postal code validation per country regex from metadata
+- [x] Build required field validation
+- [x] Build administrative area validity check
+- [x] Support custom validators injection
+- [x] Return structured `ValidationResult` with per-field errors
 
-### 1.7 Validation Package
+### 1.7 Testing  -  Phase 1
 
-- [ ] Build postal code validation per country regex from metadata
-- [ ] Build required field validation
-- [ ] Build administrative area validity check
-- [ ] Support custom validators injection
-- [ ] Return structured `ValidationResult` with per-field errors
-
-### 1.8 Testing  -  Phase 1
-
-- [ ] Unit tests for metadata parsing
-- [ ] Unit tests for schema generation
-- [ ] Unit tests for validation (required fields, postal codes)
-- [ ] Unit tests for formatting
-- [ ] Unit tests for provider implementations
-- [ ] Integration tests for React rendering
-- [ ] Integration tests for country switching
-- [ ] Integration tests for state switching
-- [ ] Integration tests for city switching
+- [x] Unit tests for metadata parsing
+- [x] Unit tests for schema generation
+- [x] Unit tests for validation (required fields, postal codes)
+- [x] Unit tests for formatting
+- [x] Unit tests for provider implementations (libaddressinput)
+- [x] Integration tests for React rendering
+- [x] Integration tests for country switching
 
 ---
 
 ## Phase 2: Headless API & Integrations
 
-**Goal:** Expose headless rendering, integrate with React Hook Form, and provide Next.js examples.
+**Goal:** Expose headless rendering, integrate with React Hook Form, add countries/states/cities data provider, and provide Next.js examples.
 
 ### 2.1 Headless API
 
 - [ ] Finalize `useAddressSchema` hook API
 - [ ] Expose raw `Field` array for custom rendering
 - [ ] Document headless usage pattern
-- [ ] Build headless example in repo
+- [ ] Build headless example in repo (with libaddressinput metadata)
 
 ### 2.2 React Hook Form Integration
 
@@ -141,6 +130,25 @@
 - [ ] Write Vite guide
 - [ ] Write Remix guide
 - [ ] Write React Hook Form guide
+
+### 2.8 @addresskit/providers/dr5hn  -  Countries/States/Cities Provider
+
+- [ ] Bundle JSON from dr5hn Countries States Cities database
+- [ ] Implement `AddressProvider` for countries, states, and cities
+- [ ] Support local JSON loading
+- [ ] Support remote JSON loading (optional)
+- [ ] Support custom provider injection
+- [ ] Lazy-load cities on demand
+- [ ] Wire state/city data into `<Address>` component
+- [ ] Wire state/city data into `useAddressSchema` hook
+
+### 2.9 Testing  -  Phase 2
+
+- [ ] Integration tests for state switching
+- [ ] Integration tests for city switching
+- [ ] Tests for dr5hn provider data loading
+- [ ] Tests for lazy-loaded city imports
+- [ ] Tests for custom provider injection
 
 ---
 
@@ -192,8 +200,8 @@
 ### 3.7 Performance Optimization
 
 - [ ] Lazy-load metadata per country (never bundle all countries)
-- [ ] Lazy-load states per country
-- [ ] Lazy-load cities per state/country
+- [ ] Lazy-load states per country (when dr5hn provider is used)
+- [ ] Lazy-load cities per state/country (when dr5hn provider is used)
 - [ ] Implement tree-shaking-friendly imports (`import "@addresskit/data/US"`)
 - [ ] Memoize schema generation
 - [ ] Memoize validation results

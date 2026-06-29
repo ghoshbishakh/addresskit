@@ -1,0 +1,28 @@
+{
+  "code": "DE",
+  "format": "%A%n%Z %C",
+  "requiredFields": ["line1", "locality", "postalCode"],
+  "fieldLabels": { "postalCode": "PLZ", "locality": "Ort", "administrativeArea": "Bundesland" },
+  "fieldPlaceholders": { "postalCode": "10115" },
+  "postalCodePattern": "\\d{5}",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    { "code": "BW", "name": "Baden-Wurttemberg" },
+    { "code": "BY", "name": "Bayern" },
+    { "code": "BE", "name": "Berlin" },
+    { "code": "BB", "name": "Brandenburg" },
+    { "code": "HB", "name": "Bremen" },
+    { "code": "HH", "name": "Hamburg" },
+    { "code": "HE", "name": "Hessen" },
+    { "code": "MV", "name": "Mecklenburg-Vorpommern" },
+    { "code": "NI", "name": "Niedersachsen" },
+    { "code": "NW", "name": "Nordrhein-Westfalen" },
+    { "code": "RP", "name": "Rheinland-Pfalz" },
+    { "code": "SL", "name": "Saarland" },
+    { "code": "SN", "name": "Sachsen" },
+    { "code": "ST", "name": "Sachsen-Anhalt" },
+    { "code": "SH", "name": "Schleswig-Holstein" },
+    { "code": "TH", "name": "Thuringen" }
+  ]
+}

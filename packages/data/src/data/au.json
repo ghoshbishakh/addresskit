@@ -1,0 +1,21 @@
+{
+  "code": "AU",
+  "format": "%A%n%C %S %Z",
+  "requiredFields": ["line1", "locality", "administrativeArea", "postalCode"],
+  "fieldLabels": { "postalCode": "Postcode", "administrativeArea": "State", "locality": "Suburb" },
+  "fieldPlaceholders": { "postalCode": "2000" },
+  "postalCodePattern": "\\d{4}",
+  "administrativeAreaType": "state",
+  "localityType": "suburb",
+  "upperFields": ["locality", "administrativeArea"],
+  "subRegions": [
+    { "code": "NSW", "name": "New South Wales" },
+    { "code": "VIC", "name": "Victoria" },
+    { "code": "QLD", "name": "Queensland" },
+    { "code": "WA", "name": "Western Australia" },
+    { "code": "SA", "name": "South Australia" },
+    { "code": "TAS", "name": "Tasmania" },
+    { "code": "ACT", "name": "Australian Capital Territory" },
+    { "code": "NT", "name": "Northern Territory" }
+  ]
+}

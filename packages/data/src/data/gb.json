@@ -1,0 +1,15 @@
+{
+  "code": "GB",
+  "format": "%A%n%C%n%S%n%Z",
+  "requiredFields": ["line1", "locality", "postalCode"],
+  "fieldLabels": { "postalCode": "Postcode", "locality": "Town/City", "administrativeArea": "County" },
+  "fieldPlaceholders": { "postalCode": "SW1A 1AA" },
+  "postalCodePattern": "[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][ABD-HJLNP-UW-Z]{2}",
+  "administrativeAreaType": "county",
+  "localityType": "town/city",
+  "upperFields": ["locality"],
+  "subRegions": [
+    { "code": "ENG", "name": "England" }, { "code": "SCT", "name": "Scotland" },
+    { "code": "WLS", "name": "Wales" }, { "code": "NIR", "name": "Northern Ireland" }
+  ]
+}

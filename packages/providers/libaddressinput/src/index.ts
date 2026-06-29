@@ -1,1 +1,1 @@
-export {};
+export { createLibaddressinputProvider } from "./provider";
