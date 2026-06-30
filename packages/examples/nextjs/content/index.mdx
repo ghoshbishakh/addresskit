@@ -1,0 +1,60 @@
+# Getting Started
+
+Install AddressKit and build your first address form.
+
+## Installation
+
+```bash
+npm install @addresskit/react @addresskit/core @addresskit/data @addresskit/providers-libaddressinput
+```
+
+## Quick Start
+
+```tsx
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import { AddressProviderContext, Address } from "@addresskit/react";
+import type { Address } from "@addresskit/core";
+import { useState } from "react";
+
+const provider = createLibaddressinputProvider();
+
+export default function MyForm() {
+  const [value, setValue] = useState<Partial<Address>>({ country: "US" });
+
+  return (
+    <AddressProviderContext.Provider value={provider}>
+      <Address value={value} onChange={setValue} />
+    </AddressProviderContext.Provider>
+  );
+}
+```
+
+## Next.js Setup
+
+Add the AddressKit packages to `transpilePackages` in your next.config.ts:
+
+```ts
+const nextConfig = {
+  transpilePackages: [
+    "@addresskit/core",
+    "@addresskit/data",
+    "@addresskit/react",
+    "@addresskit/providers-libaddressinput",
+  ],
+};
+```
+
+## Vite Setup
+
+The packages work out of the box with Vite. No additional config needed.
+
+## Package Overview
+
+| Package | Description |
+| ------- | ----------- |
+| `@addresskit/core` | Types, schema builder, and engine. Zero dependencies. Framework-agnostic. |
+| `@addresskit/data` | 256 country metadata files from Google libaddressinput. Lazy-loaded per country. |
+| `@addresskit/react` | React bindings: `<Address>` component, context, hooks. |
+| `@addresskit/react-hook-form` | React Hook Form integration with `<AddressController>`. |
+| `@addresskit/providers-libaddressinput` | 256-country provider with Google metadata. States from sub-regions. |
+| `@addresskit/providers-dr5hn` | 250-country provider with state lists from dr5hn dataset. |

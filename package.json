@@ -21,5 +21,10 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@10.8.1"
+  "packageManager": "pnpm@10.8.1",
+  "pnpm": {
+    "patchedDependencies": {
+      "nextra-theme-docs@4.6.1": "patches/nextra-theme-docs@4.6.1.patch"
+    }
+  }
 }

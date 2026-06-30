@@ -1,0 +1,74 @@
+# Headless API
+
+Use the core engine directly without React components.
+
+## `createEngine`
+
+Creates an engine instance from a provider. The engine caches metadata per country.
+
+```tsx
+import { createEngine } from "@addresskit/core";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
+const engine = createEngine(provider);
+```
+
+## `getSchema`
+
+Returns the address schema for a country, including fields with labels, types, and validation rules.
+
+```tsx
+const schema = await engine.getSchema("US");
+// {
+//   country: "US",
+//   fields: [
+//     { id: "line1", label: "Street address", required: true, type: "text" },
+//     { id: "line2", label: "Address line 2", required: false, type: "text" },
+//     { id: "locality", label: "City", required: true, type: "text" },
+//     { id: "administrativeArea", label: "State", required: true, type: "select", options: [...] },
+//     { id: "postalCode", label: "ZIP code", required: true, type: "text", validation: {...} },
+//   ],
+//   format: "%A%n%C, %S %Z"
+// }
+```
+
+## `validate`
+
+Validates an address against its country schema. Returns structured per-field errors.
+
+```tsx
+const result = await engine.validate({
+  country: "US",
+  line1: "123 Main St",
+  locality: "San Francisco",
+  administrativeArea: "CA",
+  postalCode: "94102",
+});
+// { valid: true, errors: [] }
+
+const result = await engine.validate({
+  country: "US",
+  line1: "",
+});
+// { valid: false, errors: [{ field: "line1", message: "Required" }] }
+```
+
+## `format`
+
+Formats an address string according to the country's format pattern.
+
+```tsx
+const formatted = engine.format({
+  country: "US",
+  line1: "123 Main St",
+  locality: "San Francisco",
+  administrativeArea: "CA",
+  postalCode: "94102",
+});
+// "123 Main St\nSan Francisco CA 94102"
+```
+
+## `clearInvalidValues`
+
+Returns a new address object with fields cleared that are invalid for the target country. Used internally for cascade clearing on country/state change.

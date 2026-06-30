@@ -1,0 +1,70 @@
+# Customization
+
+Override default inputs, labels, and styling.
+
+## Custom Field Components
+
+Pass custom input and select components via the `components` prop.
+
+```tsx
+import { Address } from "@addresskit/react";
+import type { FieldComponents } from "@addresskit/react";
+
+const components: FieldComponents = {
+  Input: ({ field, value, onChange, error }) => (
+    <div>
+      <label>{field.label}</label>
+      <input
+        value={value ?? ""}
+        onChange={(e) => onChange(field.id, e.target.value)}
+        className="border rounded px-3 py-2 w-full"
+      />
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+    </div>
+  ),
+  Select: ({ field, value, onChange }) => (
+    <select
+      value={value ?? ""}
+      onChange={(e) => onChange(field.id, e.target.value)}
+      className="border rounded px-3 py-2 w-full"
+    >
+      <option value="">Select...</option>
+      {field.options?.map((opt) => (
+        <option key={opt.value} value={opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  ),
+};
+
+<Address
+  value={value}
+  onChange={setValue}
+  components={components}
+/>
+```
+
+## Custom Labels
+
+Field labels come from the provider metadata. To override, use a custom provider that returns modified `fieldLabels` in `getMetadata()`.
+
+## CSS Styling
+
+Default components use semantic class names. Style with CSS or Tailwind.
+
+```css
+/* Target default input fields */
+input, select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Target field labels */
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+```

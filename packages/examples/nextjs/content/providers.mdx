@@ -1,0 +1,52 @@
+# Providers
+
+AddressKit uses a provider pattern to decouple data sources from form UI.
+
+## `@addresskit/providers-libaddressinput`
+
+256 countries with full metadata from Google libaddressinput. Includes accurate address formats, required fields, postal code patterns, and sub-regions (states).
+
+```tsx
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
+const countries = await provider.getCountries();
+const states = await provider.getStates("US");
+const metadata = await provider.getMetadata("US");
+```
+
+## `@addresskit/providers-dr5hn`
+
+250 countries with per-country state/region lists from the dr5hn Countries-States-Cities database. Falls back to generic format for countries without libaddressinput metadata.
+
+```tsx
+import { createDr5hnProvider } from "@addresskit/providers-dr5hn";
+
+const provider = createDr5hnProvider();
+const states = await provider.getStates("IN"); // Returns Indian states
+```
+
+## Custom Providers
+
+Implement the `AddressProvider` interface to use your own data source.
+
+```tsx
+import type { AddressProvider, CountryAddressConfig } from "@addresskit/core";
+
+function createMyProvider(): AddressProvider {
+  return {
+    async getCountries() {
+      return [{ code: "US", name: "United States" }];
+    },
+    async getStates(country: string) {
+      return [{ code: "CA", name: "California" }];
+    },
+    async getCities(country: string, state: string) {
+      return [];
+    },
+    async getMetadata(country: string): Promise<CountryAddressConfig> {
+      return loadMetadata(country);
+    },
+  };
+}
+```

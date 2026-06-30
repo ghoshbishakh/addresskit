@@ -1,0 +1,111 @@
+# Frameworks
+
+Integrate AddressKit with popular UI libraries.
+
+## shadcn/ui
+
+```tsx
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Address } from "@addresskit/react";
+
+const components = {
+  Input: ({ field, value, onChange, error }) => (
+    <div className="space-y-1">
+      <label className="text-sm font-medium">{field.label}</label>
+      <Input
+        value={value ?? ""}
+        onChange={(e) => onChange(field.id, e.target.value)}
+        placeholder={field.placeholder}
+      />
+      {error && <p className="text-sm text-destructive">{error}</p>}
+    </div>
+  ),
+  Select: ({ field, value, onChange }) => (
+    <div className="space-y-1">
+      <label className="text-sm font-medium">{field.label}</label>
+      <Select value={value ?? ""} onValueChange={(v) => onChange(field.id, v)}>
+        <SelectTrigger>
+          <SelectValue placeholder={field.placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {field.options?.map((opt) => (
+            <SelectItem key={opt.value} value={opt.value}>
+              {opt.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+};
+```
+
+## Mantine
+
+```tsx
+import { TextInput, NativeSelect } from "@mantine/core";
+import { Address } from "@addresskit/react";
+
+const components = {
+  Input: ({ field, value, onChange, error }) => (
+    <TextInput
+      label={field.label}
+      value={value ?? ""}
+      onChange={(e) => onChange(field.id, e.target.value)}
+      error={error}
+      required={field.required}
+    />
+  ),
+  Select: ({ field, value, onChange }) => (
+    <NativeSelect
+      label={field.label}
+      value={value ?? ""}
+      onChange={(e) => onChange(field.id, e.target.value)}
+      data={field.options?.map((o) => ({ value: o.value, label: o.label })) ?? []}
+    />
+  ),
+};
+```
+
+## MUI
+
+```tsx
+import { TextField, MenuItem } from "@mui/material";
+import { Address } from "@addresskit/react";
+
+const components = {
+  Input: ({ field, value, onChange, error }) => (
+    <TextField
+      label={field.label}
+      value={value ?? ""}
+      onChange={(e) => onChange(field.id, e.target.value)}
+      error={!!error}
+      helperText={error}
+      fullWidth
+      required={field.required}
+    />
+  ),
+  Select: ({ field, value, onChange }) => (
+    <TextField
+      select
+      label={field.label}
+      value={value ?? ""}
+      onChange={(e) => onChange(field.id, e.target.value)}
+      fullWidth
+    >
+      {field.options?.map((opt) => (
+        <MenuItem key={opt.value} value={opt.value}>
+          {opt.label}
+        </MenuItem>
+      ))}
+    </TextField>
+  ),
+};
+```

@@ -1,0 +1,61 @@
+# Components
+
+Reference for all AddressKit React components.
+
+## `<Address>`
+
+The main controlled address form component.
+
+### Props
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `value` | `Partial<Address>` | Current address values |
+| `onChange` | `(value: Partial<Address>) => void` | Called when any field changes |
+| `provider` | `AddressProvider` | Provider instance (optional if using context) |
+| `allowedCountries` | `string[]` | Restrict country dropdown to these codes |
+| `components` | `FieldComponents` | Override default input/select components |
+
+### Example
+
+```tsx
+import { Address } from "@addresskit/react";
+
+<Address
+  value={value}
+  onChange={setValue}
+  allowedCountries={["US", "GB", "CA"]}
+/>
+```
+
+## `<AddressController>`
+
+React Hook Form integration wrapper.
+
+```tsx
+import { AddressController } from "@addresskit/react-hook-form";
+import { useForm } from "react-hook-form";
+
+const { control } = useForm();
+
+<AddressController
+  name="address"
+  control={control}
+  rules={{ required: "Address is required" }}
+/>
+```
+
+## `<AddressProviderContext>`
+
+React context for providing a provider instance to all descendent Address components.
+
+```tsx
+import { AddressProviderContext, Address } from "@addresskit/react";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
+
+<AddressProviderContext.Provider value={provider}>
+  <Address value={value} onChange={setValue} />
+</AddressProviderContext.Provider>
+```

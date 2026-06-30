@@ -1,6 +1,14 @@
+import nextra from "nextra";
 import type { NextConfig } from "next";
 
+const withNextra = nextra({
+  contentDirBasePath: "/docs",
+});
+
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
+  images: { unoptimized: true },
   transpilePackages: [
     "@addresskit/core",
     "@addresskit/data",
@@ -11,4 +19,4 @@ const nextConfig: NextConfig = {
   ],
 };
 
-export default nextConfig;
+export default withNextra(nextConfig);
