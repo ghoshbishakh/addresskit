@@ -86,29 +86,29 @@
 
 ### 2.1 Headless API
 
-- [ ] Finalize `useAddressSchema` hook API
-- [ ] Expose raw `Field` array for custom rendering
-- [ ] Document headless usage pattern
-- [ ] Build headless example in repo (with libaddressinput metadata)
+- [x] Finalize `useAddressSchema` hook API
+- [x] Expose raw `Field` array for custom rendering
+- [x] Document headless usage pattern
+- [x] Build headless example in repo (with libaddressinput metadata)
 
 ### 2.2 React Hook Form Integration
 
-- [ ] Build `<AddressController>`  -  RHF-compatible wrapper
+- [x] Build `<AddressController>`  -  RHF-compatible wrapper
 - [ ] Provide controlled integration example
 - [ ] Test with RHF validation modes
 
 ### 2.3 Examples  -  Next.js
 
-- [ ] Create `packages/examples/nextjs/`
-- [ ] Basic address form example
+- [x] Create `packages/examples/nextjs/`
+- [x] Basic address form example
 - [ ] Country-restricted form example
 - [ ] Headless rendering example
 - [ ] RHF integration example
 
 ### 2.4 Examples  -  Vite
 
-- [ ] Create `packages/examples/vite/`
-- [ ] Basic address form example
+- [x] Create `packages/examples/vite/`
+- [x] Basic address form example
 
 ### 2.5 Examples  -  Remix
 
@@ -133,14 +133,14 @@
 
 ### 2.8 @addresskit/providers/dr5hn  -  Countries/States/Cities Provider
 
-- [ ] Bundle JSON from dr5hn Countries States Cities database
-- [ ] Implement `AddressProvider` for countries, states, and cities
-- [ ] Support local JSON loading
-- [ ] Support remote JSON loading (optional)
-- [ ] Support custom provider injection
+- [x] Bundle JSON from dr5hn Countries States Cities database
+- [x] Implement `AddressProvider` for countries, states, and cities
+- [x] Support local JSON loading
+- [x] Support remote JSON loading (optional)
+- [x] Support custom provider injection
 - [ ] Lazy-load cities on demand
-- [ ] Wire state/city data into `<Address>` component
-- [ ] Wire state/city data into `useAddressSchema` hook
+- [x] Wire state/city data into `<Address>` component
+- [x] Wire state/city data into `useAddressSchema` hook
 
 ### 2.9 Testing  -  Phase 2
 
