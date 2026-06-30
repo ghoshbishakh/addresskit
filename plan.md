@@ -152,98 +152,24 @@
 
 ---
 
-## Phase 3: Autocomplete, Localization & Performance
-
-**Goal:** Optional autocomplete providers, localization support, and performance tuning.
-
-### 3.1 Autocomplete Provider Interface
-
-- [ ] Define `AutocompleteProvider` interface
-- [ ] Define `AutocompleteResult` type
-- [ ] Build autocomplete adapter pattern (pluggable, zero dependencies)
-
-### 3.2 Google Places Autocomplete
-
-- [ ] Create `@addresskit/providers/google` package
-- [ ] Implement `AutocompleteProvider` for Google Places API
-- [ ] Expose as optional import (not bundled by default)
-- [ ] Add autocomplete prop to `<Address>` component
-
-### 3.3 Mapbox Search Autocomplete
-
-- [ ] Create `@addresskit/providers/mapbox` package
-- [ ] Implement `AutocompleteProvider` for Mapbox Search API
-- [ ] Expose as optional import
-
-### 3.4 HERE Search Autocomplete
-
-- [ ] Create `@addresskit/providers/here` package
-- [ ] Implement `AutocompleteProvider` for HERE Search API
-- [ ] Expose as optional import
-
-### 3.5 Autocomplete Integration in React
-
-- [ ] Wire autocomplete into `<Address>` component
-- [ ] Debounce search input
-- [ ] Display autocomplete suggestions dropdown
-- [ ] Handle selection → populate address fields
-- [ ] Handle no-results and error states
-
-### 3.6 Localization / Internationalization
-
-- [ ] Define i18n interface
-- [ ] Build translation map for field labels
-- [ ] Support `locale` prop on `<Address>` component
-- [ ] Provide default English translations
-- [ ] Allow custom translation overrides
-
-### 3.7 Performance Optimization
-
-- [ ] Lazy-load metadata per country (never bundle all countries)
-- [ ] Lazy-load states per country (when dr5hn provider is used)
-- [ ] Lazy-load cities per state/country (when dr5hn provider is used)
-- [ ] Implement tree-shaking-friendly imports (`import "@addresskit/data/US"`)
-- [ ] Memoize schema generation
-- [ ] Memoize validation results
-- [ ] Virtualize large city dropdowns (10k+ cities)
-- [ ] Async search for city combobox
-- [ ] Audit bundle size
-
-### 3.8 Accessibility
-
-- [ ] Ensure all default components have proper ARIA attributes
-- [ ] Keyboard navigation for Select and Combobox
-- [ ] Screen reader announcements for validation errors
-- [ ] Focus management on country/state change
-- [ ] Accessible autocomplete dropdown
-
-### 3.9 Testing  -  Phase 3
-
-- [ ] Test autocomplete provider adapters
-- [ ] Test autocomplete integration in React
-- [ ] Test localization
-- [ ] Performance benchmarks
-
----
-
-## Phase 4: Enterprise, Frameworks & Polish
+## Phase 3: Enterprise, Frameworks & Polish
 
 **Goal:** Additional framework adapters, mature provider APIs, and documentation site.
 
-### 4.1 Shadcn/ui Example
+### 3.1 Shadcn/ui Example
 
 - [ ] Create `packages/examples/shadcn/`
 - [ ] Build example with shadcn/ui styling
 - [ ] Demonstrate component slot pattern
 
-### 4.2 UI Framework Integration Guides
+### 3.2 UI Framework Integration Guides
 
 - [ ] Mantine integration example
 - [ ] MUI integration example
 - [ ] Chakra UI integration example
 - [ ] Tailwind CSS styling guide
 
-### 4.3 Vue Adapter
+### 3.3 Vue Adapter
 
 - [ ] Create `@addresskit/vue` package
 - [ ] Build Vue composables (`useAddressSchema`)
@@ -251,33 +177,33 @@
 - [ ] Vue example project
 - [ ] Vue documentation
 
-### 4.4 Svelte Adapter
+### 3.4 Svelte Adapter
 
 - [ ] Create `@addresskit/svelte` package
 - [ ] Build Svelte stores/stores
 - [ ] Build Svelte component
 - [ ] Svelte example project
 
-### 4.5 Angular Adapter
+### 3.5 Angular Adapter
 
 - [ ] Create `@addresskit/angular` package
 - [ ] Build Angular service and component
 - [ ] Angular example project
 
-### 4.6 React Native Adapter
+### 3.6 React Native Adapter
 
 - [ ] Create `@addresskit/react-native` package
 - [ ] Build React Native components
 - [ ] Handle native platform differences
 
-### 4.7 Enterprise Provider APIs
+### 3.7 Enterprise Provider APIs
 
 - [ ] Hosted metadata CDN (optional)
 - [ ] Server-side validation package (`@addresskit/validation-server`)
 - [ ] Address normalization service interface
 - [ ] Reverse geocoding provider interface
 
-### 4.8 Advanced Features
+### 3.8 Advanced Features
 
 - [ ] Zod schema generation from address schema
 - [ ] JSON Schema generation
@@ -289,7 +215,7 @@
 - [ ] Phone number field integration
 - [ ] Postal code lookup (autofill locality from postal code)
 
-### 4.9 Documentation Site
+### 3.9 Documentation Site
 
 - [ ] Build interactive playground
 - [ ] Country selector + schema viewer
@@ -299,12 +225,11 @@
 - [ ] Migration guide
 - [ ] Contribution guide
 
-### 4.10 E2E Testing
+### 3.10 E2E Testing
 
 - [ ] Set up Playwright
 - [ ] E2E tests for core user flows
 - [ ] Cross-browser testing
-- [ ] E2E for autocomplete flows
 
 ---
 

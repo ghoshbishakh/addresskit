@@ -121,18 +121,6 @@ importers:
         specifier: workspace:*
         version: link:../../data
 
-  packages/providers/google:
-    dependencies:
-      '@addresskit/core':
-        specifier: workspace:*
-        version: link:../../core
-
-  packages/providers/here:
-    dependencies:
-      '@addresskit/core':
-        specifier: workspace:*
-        version: link:../../core
-
   packages/providers/libaddressinput:
     dependencies:
       '@addresskit/core':
@@ -141,12 +129,6 @@ importers:
       '@addresskit/data':
         specifier: workspace:*
         version: link:../../data
-
-  packages/providers/mapbox:
-    dependencies:
-      '@addresskit/core':
-        specifier: workspace:*
-        version: link:../../core
 
   packages/react:
     dependencies:
