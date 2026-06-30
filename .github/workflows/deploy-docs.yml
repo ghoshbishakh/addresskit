@@ -29,6 +29,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - run: pnpm -r --filter '!./packages/examples/**' build
+
       - uses: actions/configure-pages@v5
 
       - run: pnpm --filter @addresskit/example-nextjs build
