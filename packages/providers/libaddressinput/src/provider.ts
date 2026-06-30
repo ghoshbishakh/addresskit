@@ -1,19 +1,13 @@
 import type { AddressProvider, CountryAddressConfig } from "@addresskit/core";
-import { loadMetadata, getSupportedCountries } from "@addresskit/data";
+import { loadMetadata, getCountries } from "@addresskit/data";
 
 export function createLibaddressinputProvider(): AddressProvider {
   const cache = new Map<string, CountryAddressConfig>();
 
   return {
     async getCountries() {
-      const codes = getSupportedCountries();
-      const all = await Promise.all(
-        codes.map(async (code) => {
-          const meta = await this.getMetadata(code);
-          return { code, name: meta.name ?? code };
-        })
-      );
-      return all;
+      // Backed by a bundled index; avoids loading all per-country metadata.
+      return getCountries();
     },
 
     async getStates(country: string) {

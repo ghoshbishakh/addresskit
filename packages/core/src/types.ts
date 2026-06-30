@@ -56,7 +56,6 @@ export interface CountryAddressConfig {
   administrativeAreaType: string;
   localityType: string;
   upperFields?: FieldId[];
-  latinFormat?: string;
   subRegions?: { name: string; code: string }[];
 }
 

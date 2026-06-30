@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { loadMetadata, getSupportedCountries } from "../loader";
+import { getCountries, getCountryName, getStateName } from "../index";
 
 describe("loadMetadata", () => {
   it("loads US metadata", async () => {
@@ -39,5 +40,39 @@ describe("getSupportedCountries", () => {
     expect(codes).toContain("US");
     expect(codes).toContain("GB");
     expect(codes).toContain("CA");
+  });
+});
+
+describe("getCountries", () => {
+  it("returns code/name pairs without loading per-country metadata", () => {
+    const countries = getCountries();
+    expect(countries.length).toBeGreaterThan(200);
+    const us = countries.find((c) => c.code === "US");
+    expect(us?.name).toBeTruthy();
+  });
+
+  it("excludes language variants like CA--FR", () => {
+    const countries = getCountries();
+    expect(countries.some((c) => c.code.includes("--"))).toBe(false);
+  });
+});
+
+describe("getCountryName", () => {
+  it("resolves a known country code", () => {
+    expect(getCountryName("US")).toBeTruthy();
+  });
+
+  it("returns undefined for an unknown code", () => {
+    expect(getCountryName("ZZ")).toBeUndefined();
+  });
+});
+
+describe("getStateName", () => {
+  it("resolves a subregion code to its display name", async () => {
+    expect(await getStateName("US", "CA")).toBe("California");
+  });
+
+  it("returns undefined for an unknown subregion code", async () => {
+    expect(await getStateName("US", "ZZ")).toBeUndefined();
   });
 });

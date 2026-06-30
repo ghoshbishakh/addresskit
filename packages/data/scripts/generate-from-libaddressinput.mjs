@@ -45,6 +45,7 @@ const adminTypes = {
 
 // Parse all country entries
 const loaderLines = [];
+const countryIndex = [];
 let countryCount = 0;
 
 for (const line of lines) {
@@ -190,6 +191,11 @@ for (const line of lines) {
   const fileName = `${codeUpper}.json`;
   writeFileSync(resolve(outDir, fileName), JSON.stringify(config, null, 2) + "\n", "utf-8");
   loaderLines.push(`  ${JSON.stringify(codeUpper)}: () => import("./data/${fileName}"),`);
+  // Language/script variants (e.g. CA--FR) are metadata refinements, not
+  // separate countries, so they are excluded from the country index.
+  if (!codeUpper.includes("--")) {
+    countryIndex.push({ code: codeUpper, name: countryName });
+  }
   countryCount++;
 }
 
@@ -217,4 +223,19 @@ export function getSupportedCountries(): string[] {
 
 writeFileSync(resolve(__dirname, "../src/loader.ts"), loaderCode, "utf-8");
 
-console.log(`Generated ${countryCount} country metadata files and loader.ts`);
+// Generate countries.ts: a lightweight index for building country selectors
+// without loading every per-country metadata file.
+countryIndex.sort((a, b) => a.name.localeCompare(b.name));
+const countriesCode = `// Auto-generated from country metadata. Do not edit.
+
+/** Lightweight country index (code + display name), sorted by name. */
+export const COUNTRIES: readonly { code: string; name: string }[] = [
+${countryIndex.map((c) => `  { code: ${JSON.stringify(c.code)}, name: ${JSON.stringify(c.name)} },`).join("\n")}
+];
+`;
+
+writeFileSync(resolve(__dirname, "../src/countries.ts"), countriesCode, "utf-8");
+
+console.log(
+  `Generated ${countryCount} country metadata files, loader.ts, and ${countryIndex.length} entries in countries.ts`,
+);

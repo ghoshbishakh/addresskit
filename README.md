@@ -8,14 +8,18 @@ Dynamically render country-specific address forms with validation, state/city ca
 
 ## Features
 
-- **Country-specific forms** -- field labels, ordering, and required fields adapt to each country
-- **Postal code validation** -- regex-based validation per country
-- **Country/State/City cascading** -- automatic, with lazy-loaded data
+- **Country-specific forms** -- field labels, ordering, and required fields adapt to each of 256 countries/territories (from Google's libaddressinput data)
+- **Country-aware validation** -- required fields, postal code regex, and valid state/province checks adapt automatically to the selected country
+- **Dynamic field schemas** -- `getSchema(country)` tells your UI which fields to show and which render as dropdowns vs. text inputs
+- **State/province dropdowns** -- bundled subregion lists with codes *and* display names for 43 countries
+- **Drop-in React component** -- `<Address>` handles country switching, field re-rendering, debounced validation, and invalid-value cleanup
+- **Pluggable data providers** -- swap libaddressinput, dr5hn, or your own behind one `AddressProvider` interface
+- **Address formatting** -- `format()` produces a correctly ordered postal string per country's format rules
+- **Lazy-loaded & tree-shakeable** -- each country is a separately imported JSON, so apps only ship data for countries actually used
+- **Framework-agnostic core** -- validation/schema/format logic lives in `@addresskit/core` with no React dependency
 - **Headless architecture** -- use the hooks or bring your own UI components
 - **SSR compatible** -- works with Next.js App Router, Pages Router, Vite, Remix
-- **Offline capable** -- bundled metadata works without network
-- **No mandatory API keys** -- all core features work without external services
-- **Tree-shakeable** -- import only what you need
+- **Offline capable, no mandatory API keys** -- bundled metadata works without network or external services
 - **TypeScript** -- full type safety
 
 ---
@@ -242,7 +246,7 @@ Available hooks from `@addresskit/react`:
 
 ### libaddressinput (metadata)
 
-Provides address format, field labels, required fields, and postal code regex for 7 countries (US, GB, CA, DE, JP, AU, BR).
+Provides address format, field labels, ordering, required fields, and postal code regex for 256 countries/territories, plus state/province lists (with codes and display names) for 43 of them.
 
 ```tsx
 import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";

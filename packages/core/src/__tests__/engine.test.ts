@@ -112,12 +112,36 @@ describe("createEngine", () => {
         administrativeArea: "CA",
         postalCode: "90210",
       };
-      await engine.validate(address);
-      const formatted = engine.format(address);
+      const formatted = await engine.format(address);
       expect(formatted).toContain("123 Main St");
       expect(formatted).toContain("LOS ANGELES");
-      expect(formatted).toContain("CA");
       expect(formatted).toContain("90210");
+    });
+
+    it("resolves the administrative area code to its display name", async () => {
+      const address: Address = {
+        country: "US",
+        line1: "123 Main St",
+        locality: "Los Angeles",
+        administrativeArea: "CA",
+        postalCode: "90210",
+      };
+      const formatted = await engine.format(address);
+      // upperFields includes administrativeArea, so "California" -> "CALIFORNIA".
+      expect(formatted).toContain("CALIFORNIA");
+    });
+
+    it("loads metadata on demand without a prior validate/getSchema call", async () => {
+      const freshEngine = createEngine(testProvider);
+      const formatted = await freshEngine.format({
+        country: "US",
+        line1: "123 Main St",
+        locality: "Los Angeles",
+        administrativeArea: "NY",
+        postalCode: "10001",
+      });
+      expect(formatted).toContain("123 Main St");
+      expect(formatted).toContain("NEW YORK");
     });
   });
 
