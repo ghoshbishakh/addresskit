@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     "@addresskit/core",
     "@addresskit/data",
     "@addresskit/react",
+    "@addresskit/react-hook-form",
     "@addresskit/providers-libaddressinput",
     "@addresskit/providers-dr5hn",
   ],

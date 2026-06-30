@@ -1,24 +1,22 @@
 # AddressKit
 
-> Open-source, headless address components for React and other frameworks.
+> Open-source, headless address components for React.
 
-Dynamically render country-specific address forms with validation, state/city cascading, and pluggable data providers  -  no API keys required.
+Dynamically render country-specific address forms with validation, state/city cascading, and pluggable data providers -- no API keys required.
 
 ---
 
 ## Features
 
-- **Country-specific forms**  -  field labels, ordering, and required fields adapt to each country
-- **Postal code validation**  -  regex-based validation per country
-- **Country → State → City cascading**  -  automatic, with lazy-loaded data
-- **Headless architecture**  -  use the hooks or bring your own UI components
-- **Framework agnostic**  -  React-first with adapters for Vue, Svelte, Angular, and React Native. First-class Next.js support.
-- **Offline capable**  -  works offline by default with bundled metadata
-- **No mandatory API keys**  -  all core features work without external services
-- **Optional autocomplete**  -  pluggable providers for Google Places, Mapbox, HERE
-- **Tree-shakeable**  -  import only what you need
-- **SSR compatible**  -  works with Next.js (App Router + Pages Router), Remix, and other SSR frameworks
-- **TypeScript**  -  full type safety
+- **Country-specific forms** -- field labels, ordering, and required fields adapt to each country
+- **Postal code validation** -- regex-based validation per country
+- **Country/State/City cascading** -- automatic, with lazy-loaded data
+- **Headless architecture** -- use the hooks or bring your own UI components
+- **SSR compatible** -- works with Next.js App Router, Pages Router, Vite, Remix
+- **Offline capable** -- bundled metadata works without network
+- **No mandatory API keys** -- all core features work without external services
+- **Tree-shakeable** -- import only what you need
+- **TypeScript** -- full type safety
 
 ---
 
@@ -28,84 +26,316 @@ Dynamically render country-specific address forms with validation, state/city ca
 |---|---|
 | `@addresskit/core` | Address engine, metadata parsing, validation, formatting, provider interfaces |
 | `@addresskit/react` | React hooks, components, context, headless renderer |
-| `@addresskit/data` | Bundled country metadata, states, cities (lazy-loads) |
-| `@addresskit/providers/libaddressinput` | Google libaddressinput metadata provider |
-| `@addresskit/providers/dr5hn` | Countries/States/Cities database provider |
-| `@addresskit/providers/google` | Google Places autocomplete (optional) |
-| `@addresskit/providers/mapbox` | Mapbox Search autocomplete (optional) |
-| `@addresskit/providers/here` | HERE Search autocomplete (optional) |
+| `@addresskit/react-hook-form` | React Hook Form integration component |
+| `@addresskit/data` | Bundled country metadata (lazy-loads per country) |
+| `@addresskit/providers-libaddressinput` | Google libaddressinput metadata provider |
+| `@addresskit/providers-dr5hn` | Countries/States/Cities database provider (250 countries) |
 | `@addresskit/validation` | Validation rules, postal code regex, custom validators |
 
 ---
 
 ## Quick Start
 
+```bash
+npm install @addresskit/core @addresskit/react @addresskit/providers-libaddressinput
+```
+
 ```tsx
-import { Address } from "@addresskit/react";
+import { Address, AddressProviderContext } from "@addresskit/react";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
 
 function MyForm() {
   const [address, setAddress] = useState({ country: "US" });
 
   return (
-    <Address
-      value={address}
-      onChange={setAddress}
-      allowedCountries={["US", "CA", "GB", "IN"]}
-    />
+    <AddressProviderContext.Provider value={provider}>
+      <Address value={address} onChange={setAddress} />
+    </AddressProviderContext.Provider>
   );
 }
 ```
 
-### Next.js (App Router)
+### Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `value` | `Partial<Address>` | Current address values |
+| `onChange` | `(address: Partial<Address>) => void` | Called on every field change |
+| `allowedCountries` | `string[]` | Restrict country dropdown to specific codes |
+| `components` | `{ Input?, Select? }` | Custom component overrides |
+| `provider` | `AddressProvider` | Explicit provider (overrides context) |
+
+---
+
+## Next.js
+
+The `<Address>` component uses `"use client"`. Data loads synchronously on first render -- no useEffect required.
 
 ```tsx
 "use client";
 
-import { Address } from "@addresskit/react";
+import { Address, AddressProviderContext } from "@addresskit/react";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
 
 export default function AddressForm() {
   const [address, setAddress] = useState({ country: "US" });
 
   return (
-    <Address
-      value={address}
-      onChange={setAddress}
-    />
+    <AddressProviderContext.Provider value={provider}>
+      <Address value={address} onChange={setAddress} />
+    </AddressProviderContext.Provider>
   );
 }
 ```
 
-Data loads synchronously on first render. No useEffect required.
+Add workspace packages to `transpilePackages` in `next.config.ts`:
 
-### Headless Mode
+```ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  transpilePackages: [
+    "@addresskit/core",
+    "@addresskit/data",
+    "@addresskit/react",
+    "@addresskit/providers-libaddressinput",
+    "@addresskit/providers-dr5hn",
+  ],
+};
+
+export default nextConfig;
+```
+
+---
+
+## Vite
 
 ```tsx
-import { useAddressSchema } from "@addresskit/react";
+// main.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./app";
 
-function CustomForm() {
-  const schema = useAddressSchema("US");
+createRoot(document.getElementById("root")!).render(
+  <StrictMode><App /></StrictMode>
+);
+```
+
+```tsx
+// app.tsx
+import { useState } from "react";
+import { Address, AddressProviderContext } from "@addresskit/react";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+
+const provider = createLibaddressinputProvider();
+
+export default function App() {
+  const [value, setValue] = useState({ country: "US" });
 
   return (
-    <form>
-      {schema.fields.map((field) => (
-        <MyCustomField key={field.id} field={field} />
-      ))}
-    </form>
+    <AddressProviderContext.Provider value={provider}>
+      <Address value={value} onChange={setValue} />
+    </AddressProviderContext.Provider>
   );
 }
 ```
 
 ---
 
-## Development
+## React Hook Form
 
-See [plan.md](./plan.md) for the full development roadmap.
+```bash
+npm install @addresskit/react-hook-form react-hook-form
+```
+
+```tsx
+import { useForm } from "react-hook-form";
+import { AddressProviderContext } from "@addresskit/react";
+import { AddressController } from "@addresskit/react-hook-form";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import type { Address } from "@addresskit/core";
+
+const provider = createLibaddressinputProvider();
+
+export default function RHFExample() {
+  const { control, handleSubmit } = useForm<{ address: Partial<Address> }>({
+    defaultValues: { address: { country: "US" } },
+  });
+
+  return (
+    <AddressProviderContext.Provider value={provider}>
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
+        <AddressController name="address" control={control} />
+        <button type="submit">Submit</button>
+      </form>
+    </AddressProviderContext.Provider>
+  );
+}
+```
+
+The `AddressController` accepts RHF `rules` for validation:
+
+```tsx
+<AddressController
+  name="address"
+  control={control}
+  rules={{
+    validate: {
+      requiredFields: (value) => {
+        const addr = value as Partial<Address>;
+        if (addr.country && !addr.line1) return "Street address is required";
+        return true;
+      },
+    },
+  }}
+/>
+```
+
+---
+
+## Headless API
+
+Skip the `<Address>` component and use hooks directly for custom rendering:
+
+```tsx
+import { createEngine } from "@addresskit/core";
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import { useState, useEffect } from "react";
+
+const provider = createLibaddressinputProvider();
+const engine = createEngine(provider);
+
+function CustomForm() {
+  const [country, setCountry] = useState("US");
+  const [fields, setFields] = useState([]);
+
+  useEffect(() => {
+    engine.getSchema(country).then((schema) => setFields(schema.fields));
+  }, [country]);
+
+  return (
+    <form>
+      {fields.map((field) => (
+        <input key={field.id} placeholder={field.placeholder} />
+      ))}
+    </form>
+  );
+}
+```
+
+Available hooks from `@addresskit/react`:
+
+| Hook | Returns |
+|---|---|
+| `useAddressSchema(country)` | `{ fields, format, country }` |
+| `useAddressValidation(address)` | `{ valid, errors }` |
+| `useAddressFormat(address)` | Formatted string |
+| `useAddressEngine()` | `AddressEngine` instance |
+
+---
+
+## Providers
+
+### libaddressinput (metadata)
+
+Provides address format, field labels, required fields, and postal code regex for 7 countries (US, GB, CA, DE, JP, AU, BR).
+
+```tsx
+import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+```
+
+### dr5hn (countries/states/cities)
+
+Provides 250 countries and per-country state/region lists. Delegates metadata to `@addresskit/data` with fallback default config.
+
+```tsx
+import { createDr5hnProvider } from "@addresskit/providers-dr5hn";
+```
+
+---
+
+## State/City Cascading
+
+The `<Address>` component automatically clears dependent fields when country or state changes:
+
+- **Country change** -- clears locality, administrativeArea, and postalCode
+- **State change** -- clears locality and postalCode
+
+The dr5hn provider supplies state lists for 229 countries. Cities can be added with a custom provider.
+
+---
+
+## Custom Components
+
+Pass custom Input and Select components via the `components` prop:
+
+```tsx
+<Address
+  value={value}
+  onChange={setValue}
+  components={{
+    Input: ({ field, value, error, onChange }) => (
+      <div>
+        <label>{field.label}</label>
+        <input
+          value={value}
+          onChange={(e) => onChange(field.id, e.target.value)}
+          aria-invalid={!!error}
+        />
+        {error && <span role="alert">{error}</span>}
+      </div>
+    ),
+    Select: ({ field, value, error, onChange }) => (
+      <div>
+        <label>{field.label}</label>
+        <select
+          value={value}
+          onChange={(e) => onChange(field.id, e.target.value)}
+          aria-invalid={!!error}
+        >
+          <option value="">Select...</option>
+          {field.options?.map((opt) => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+    ),
+  }}
+/>
+```
+
+---
+
+## Custom Provider
+
+Implement the `AddressProvider` interface to supply your own data:
+
+```tsx
+import type { AddressProvider, CountryAddressConfig } from "@addresskit/core";
+
+const myProvider: AddressProvider = {
+  async getCountries() { return [{ code: "US", name: "United States" }]; },
+  async getStates(country) { return []; },
+  async getCities(country, state) { return []; },
+  async getMetadata(country) { /* return CountryAddressConfig */ },
+};
+```
+
+---
+
+## Development
 
 ```
 pnpm install
 pnpm build
 pnpm test
 ```
+
+See [plan.md](./plan.md) for the development roadmap.
 
 ---
 

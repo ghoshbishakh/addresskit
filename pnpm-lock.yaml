@@ -52,6 +52,9 @@ importers:
       '@addresskit/react':
         specifier: workspace:*
         version: link:../../react
+      '@addresskit/react-hook-form':
+        specifier: workspace:*
+        version: link:../../react-hook-form
       next:
         specifier: ^15.0.0
         version: 15.5.19(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -61,6 +64,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.7(react@19.2.7)
+      react-hook-form:
+        specifier: ^7.0.0
+        version: 7.80.0(react@19.2.7)
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
