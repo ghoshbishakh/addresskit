@@ -1,0 +1,25 @@
+{
+  "code": "KI",
+  "name": "KIRIBATI",
+  "format": "%A%n%S%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ]
+}

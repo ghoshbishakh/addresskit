@@ -1,0 +1,36 @@
+{
+  "code": "HK--EN",
+  "name": "HONG KONG",
+  "format": "%S%n%A",
+  "requiredFields": [
+    "line1",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "administrativeArea": "Area"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "administrativeArea": "Area"
+  },
+  "administrativeAreaType": "area",
+  "localityType": "city",
+  "upperFields": [
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "Hong Kong Island",
+      "name": "Hong Kong Island"
+    },
+    {
+      "code": "Kowloon",
+      "name": "Kowloon"
+    },
+    {
+      "code": "New Territories",
+      "name": "New Territories"
+    }
+  ]
+}

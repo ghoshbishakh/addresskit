@@ -1,0 +1,95 @@
+{
+  "code": "MY",
+  "name": "MALAYSIA",
+  "format": "%A%n%D%n%Z %C%n%S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "01",
+      "name": "JOHOR"
+    },
+    {
+      "code": "02",
+      "name": "KEDAH"
+    },
+    {
+      "code": "03",
+      "name": "KELANTAN"
+    },
+    {
+      "code": "14",
+      "name": "KUALA LUMPUR"
+    },
+    {
+      "code": "15",
+      "name": "LABUAN"
+    },
+    {
+      "code": "04",
+      "name": "MELAKA"
+    },
+    {
+      "code": "05",
+      "name": "NEGERI SEMBILAN"
+    },
+    {
+      "code": "06",
+      "name": "PAHANG"
+    },
+    {
+      "code": "08",
+      "name": "PERAK"
+    },
+    {
+      "code": "09",
+      "name": "PERLIS"
+    },
+    {
+      "code": "07",
+      "name": "PULAU PINANG"
+    },
+    {
+      "code": "16",
+      "name": "PUTRAJAYA"
+    },
+    {
+      "code": "12",
+      "name": "SABAH"
+    },
+    {
+      "code": "13",
+      "name": "SARAWAK"
+    },
+    {
+      "code": "10",
+      "name": "SELANGOR"
+    },
+    {
+      "code": "11",
+      "name": "TERENGGANU"
+    }
+  ]
+}

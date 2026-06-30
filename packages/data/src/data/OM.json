@@ -1,0 +1,21 @@
+{
+  "code": "OM",
+  "name": "OMAN",
+  "format": "%A%n%Z%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(PC )?\\d{3}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

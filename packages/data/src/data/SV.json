@@ -1,0 +1,88 @@
+{
+  "code": "SV",
+  "name": "EL SALVADOR",
+  "format": "%A%n%Z-%C%n%S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^CP [1-3][1-7][0-2]\\d$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "subRegions": [
+    {
+      "code": "AH",
+      "name": "Ahuachapán"
+    },
+    {
+      "code": "CA",
+      "name": "Cabañas"
+    },
+    {
+      "code": "CH",
+      "name": "Chalatenango"
+    },
+    {
+      "code": "CU",
+      "name": "Cuscatlán"
+    },
+    {
+      "code": "LI",
+      "name": "La Libertad"
+    },
+    {
+      "code": "PA",
+      "name": "La Paz"
+    },
+    {
+      "code": "UN",
+      "name": "La Unión"
+    },
+    {
+      "code": "MO",
+      "name": "Morazán"
+    },
+    {
+      "code": "SM",
+      "name": "San Miguel"
+    },
+    {
+      "code": "SS",
+      "name": "San Salvador"
+    },
+    {
+      "code": "SV",
+      "name": "San Vicente"
+    },
+    {
+      "code": "SA",
+      "name": "Santa Ana"
+    },
+    {
+      "code": "SO",
+      "name": "Sonsonate"
+    },
+    {
+      "code": "US",
+      "name": "Usulután"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "code": "PG",
+  "name": "PAPUA NEW GUINEA",
+  "format": "%A%n%C %Z %S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{3}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

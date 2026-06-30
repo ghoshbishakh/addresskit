@@ -1,0 +1,34 @@
+{
+  "code": "KY",
+  "name": "CAYMAN ISLANDS",
+  "format": "%A%n%S",
+  "requiredFields": [
+    "line1",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "administrativeArea": "Island"
+  },
+  "postalCodePattern": "^KY\\d-\\d{4}$",
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "CAYMAN BRAC",
+      "name": "CAYMAN BRAC"
+    },
+    {
+      "code": "GRAND CAYMAN",
+      "name": "GRAND CAYMAN"
+    },
+    {
+      "code": "LITTLE CAYMAN",
+      "name": "LITTLE CAYMAN"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "code": "CH--FR",
+  "name": "SWITZERLAND",
+  "format": "%A%nCH-%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "AR",
+      "name": "Appenzell Rhodes-Extérieures"
+    },
+    {
+      "code": "AI",
+      "name": "Appenzell Rhodes-Intérieures"
+    },
+    {
+      "code": "AG",
+      "name": "Argovie"
+    },
+    {
+      "code": "BL",
+      "name": "Bâle-Campagne"
+    },
+    {
+      "code": "BS",
+      "name": "Bâle-Ville"
+    },
+    {
+      "code": "BE",
+      "name": "Berne"
+    },
+    {
+      "code": "FR",
+      "name": "Fribourg"
+    },
+    {
+      "code": "GE",
+      "name": "Genève"
+    },
+    {
+      "code": "GL",
+      "name": "Glaris"
+    },
+    {
+      "code": "GR",
+      "name": "Grisons"
+    },
+    {
+      "code": "JU",
+      "name": "Jura"
+    },
+    {
+      "code": "LU",
+      "name": "Lucerne"
+    },
+    {
+      "code": "NE",
+      "name": "Neuchâtel"
+    },
+    {
+      "code": "NW",
+      "name": "Nidwald"
+    },
+    {
+      "code": "OW",
+      "name": "Obwald"
+    },
+    {
+      "code": "SG",
+      "name": "Saint-Gall"
+    },
+    {
+      "code": "SH",
+      "name": "Schaffhouse"
+    },
+    {
+      "code": "SZ",
+      "name": "Schwyz"
+    },
+    {
+      "code": "SO",
+      "name": "Soleure"
+    },
+    {
+      "code": "TI",
+      "name": "Tessin"
+    },
+    {
+      "code": "TG",
+      "name": "Thurgovie"
+    },
+    {
+      "code": "UR",
+      "name": "Uri"
+    },
+    {
+      "code": "VS",
+      "name": "Valais"
+    },
+    {
+      "code": "VD",
+      "name": "Vaud"
+    },
+    {
+      "code": "ZG",
+      "name": "Zoug"
+    },
+    {
+      "code": "ZH",
+      "name": "Zurich"
+    }
+  ]
+}

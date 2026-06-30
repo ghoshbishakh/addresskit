@@ -1,0 +1,32 @@
+{
+  "code": "KN",
+  "name": "SAINT KITTS AND NEVIS",
+  "format": "%A%n%C, %S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "N",
+      "name": "NEVIS"
+    },
+    {
+      "code": "K",
+      "name": "ST. KITTS"
+    }
+  ]
+}

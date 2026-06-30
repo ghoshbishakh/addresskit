@@ -1,0 +1,27 @@
+{
+  "code": "UZ",
+  "name": "UZBEKISTAN",
+  "format": "%A%n%Z %C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{6}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ]
+}

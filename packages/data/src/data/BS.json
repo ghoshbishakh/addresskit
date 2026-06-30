@@ -1,0 +1,98 @@
+{
+  "code": "BS",
+  "name": "BAHAMAS",
+  "format": "%A%n%C, %S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "ABACO",
+      "name": "Abaco Islands"
+    },
+    {
+      "code": "AK",
+      "name": "Acklins"
+    },
+    {
+      "code": "ANDROS",
+      "name": "Andros Island"
+    },
+    {
+      "code": "BY",
+      "name": "Berry Islands"
+    },
+    {
+      "code": "BI",
+      "name": "Bimini"
+    },
+    {
+      "code": "CI",
+      "name": "Cat Island"
+    },
+    {
+      "code": "CROOKED ISLAND",
+      "name": "Crooked Island"
+    },
+    {
+      "code": "ELEUTHERA",
+      "name": "Eleuthera"
+    },
+    {
+      "code": "EX",
+      "name": "Exuma and Cays"
+    },
+    {
+      "code": "GRAND BAHAMA",
+      "name": "Grand Bahama"
+    },
+    {
+      "code": "HI",
+      "name": "Harbour Island"
+    },
+    {
+      "code": "IN",
+      "name": "Inagua"
+    },
+    {
+      "code": "LI",
+      "name": "Long Island"
+    },
+    {
+      "code": "MG",
+      "name": "Mayaguana"
+    },
+    {
+      "code": "N.P.",
+      "name": "New Providence"
+    },
+    {
+      "code": "RI",
+      "name": "Ragged Island"
+    },
+    {
+      "code": "RC",
+      "name": "Rum Cay"
+    },
+    {
+      "code": "SS",
+      "name": "San Salvador"
+    },
+    {
+      "code": "SW",
+      "name": "Spanish Wells"
+    }
+  ]
+}

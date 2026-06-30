@@ -1,0 +1,24 @@
+{
+  "code": "PA",
+  "name": "PANAMA (REP.)",
+  "format": "%A%n%C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ]
+}

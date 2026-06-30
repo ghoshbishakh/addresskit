@@ -1,0 +1,104 @@
+{
+  "code": "SO",
+  "name": "SOMALIA",
+  "format": "%A%n%C, %S %Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "AW",
+      "name": "AWDAL"
+    },
+    {
+      "code": "BK",
+      "name": "BAKOOL"
+    },
+    {
+      "code": "BN",
+      "name": "BANAADIR"
+    },
+    {
+      "code": "BR",
+      "name": "BARI"
+    },
+    {
+      "code": "BY",
+      "name": "BAY"
+    },
+    {
+      "code": "GA",
+      "name": "GALGUDUUD"
+    },
+    {
+      "code": "GE",
+      "name": "GEDO"
+    },
+    {
+      "code": "HI",
+      "name": "HIIRAAN"
+    },
+    {
+      "code": "JD",
+      "name": "JUBBADA DHEXE"
+    },
+    {
+      "code": "JH",
+      "name": "JUBBADA HOOSE"
+    },
+    {
+      "code": "MU",
+      "name": "MUDUG"
+    },
+    {
+      "code": "NU",
+      "name": "NUGAAL"
+    },
+    {
+      "code": "SA",
+      "name": "SANAAG"
+    },
+    {
+      "code": "SD",
+      "name": "SHABEELLAHA DHEXE"
+    },
+    {
+      "code": "SH",
+      "name": "SHABEELLAHA HOOSE"
+    },
+    {
+      "code": "SO",
+      "name": "SOOL"
+    },
+    {
+      "code": "TO",
+      "name": "TOGDHEER"
+    },
+    {
+      "code": "WO",
+      "name": "WOQOOYI GALBEED"
+    }
+  ]
+}

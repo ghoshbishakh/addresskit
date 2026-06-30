@@ -1,0 +1,27 @@
+{
+  "code": "CC",
+  "name": "COCOS (KEELING) ISLANDS",
+  "format": "%A%n%C %S %Z",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^6799$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ]
+}

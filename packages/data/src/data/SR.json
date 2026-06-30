@@ -1,0 +1,66 @@
+{
+  "code": "SR",
+  "name": "SURINAME",
+  "format": "%A%n%C %X%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "BR",
+      "name": "BROKOPONDO"
+    },
+    {
+      "code": "CM",
+      "name": "COMMEWIJNE"
+    },
+    {
+      "code": "CR",
+      "name": "CORONIE"
+    },
+    {
+      "code": "MA",
+      "name": "MAROWIJNE"
+    },
+    {
+      "code": "NI",
+      "name": "NICKERIE"
+    },
+    {
+      "code": "PR",
+      "name": "PARA"
+    },
+    {
+      "code": "PM",
+      "name": "PARAMARIBO"
+    },
+    {
+      "code": "SA",
+      "name": "SARAMACCA"
+    },
+    {
+      "code": "SI",
+      "name": "SIPALIWINI"
+    },
+    {
+      "code": "WA",
+      "name": "WANICA"
+    }
+  ]
+}

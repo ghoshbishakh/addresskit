@@ -1,0 +1,30 @@
+{
+  "code": "PF",
+  "name": "FRENCH POLYNESIA",
+  "format": "%A%n%Z %C %S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^987\\d{2}$",
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ]
+}

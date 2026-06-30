@@ -19,7 +19,7 @@ describe("createLibaddressinputProvider", () => {
   it("returns metadata for US", async () => {
     const meta = await provider.getMetadata("US");
     expect(meta.code).toBe("US");
-    expect(meta.format).toBe("%A%n%C, %S %Z");
+    expect(meta.format).toBe("%A%n%C %S %Z");
   });
 
   it("returns empty cities", async () => {

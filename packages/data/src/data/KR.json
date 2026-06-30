@@ -1,0 +1,99 @@
+{
+  "code": "KR",
+  "name": "SOUTH KOREA",
+  "format": "%S %C%D%n%A%n%Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Do/si",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Do/si",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{3}[\\-]\\d{3}$",
+  "administrativeAreaType": "do_si",
+  "localityType": "city",
+  "upperFields": [
+    "postalCode"
+  ],
+  "subRegions": [
+    {
+      "code": "42",
+      "name": "강원"
+    },
+    {
+      "code": "41",
+      "name": "경기"
+    },
+    {
+      "code": "48",
+      "name": "경남"
+    },
+    {
+      "code": "47",
+      "name": "경북"
+    },
+    {
+      "code": "29",
+      "name": "광주"
+    },
+    {
+      "code": "27",
+      "name": "대구"
+    },
+    {
+      "code": "30",
+      "name": "대전"
+    },
+    {
+      "code": "26",
+      "name": "부산"
+    },
+    {
+      "code": "11",
+      "name": "서울"
+    },
+    {
+      "code": "세종특별자치시",
+      "name": "세종"
+    },
+    {
+      "code": "31",
+      "name": "울산"
+    },
+    {
+      "code": "28",
+      "name": "인천"
+    },
+    {
+      "code": "46",
+      "name": "전남"
+    },
+    {
+      "code": "45",
+      "name": "전북"
+    },
+    {
+      "code": "49",
+      "name": "제주"
+    },
+    {
+      "code": "44",
+      "name": "충남"
+    },
+    {
+      "code": "43",
+      "name": "충북"
+    }
+  ]
+}

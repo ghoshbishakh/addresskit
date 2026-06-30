@@ -1,0 +1,105 @@
+{
+  "code": "UY",
+  "name": "URUGUAY",
+  "format": "%A%n%Z %C %S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "AR",
+      "name": "ARTIGAS"
+    },
+    {
+      "code": "CA",
+      "name": "CANELONES"
+    },
+    {
+      "code": "CL",
+      "name": "CERRO LARGO"
+    },
+    {
+      "code": "CO",
+      "name": "COLONIA"
+    },
+    {
+      "code": "DU",
+      "name": "DURAZNO"
+    },
+    {
+      "code": "FS",
+      "name": "FLORES"
+    },
+    {
+      "code": "FD",
+      "name": "FLORIDA"
+    },
+    {
+      "code": "LA",
+      "name": "LAVALLEJA"
+    },
+    {
+      "code": "MA",
+      "name": "MALDONADO"
+    },
+    {
+      "code": "MO",
+      "name": "MONTEVIDEO"
+    },
+    {
+      "code": "PA",
+      "name": "PAYSANDÚ"
+    },
+    {
+      "code": "RN",
+      "name": "RÍO NEGRO"
+    },
+    {
+      "code": "RV",
+      "name": "RIVERA"
+    },
+    {
+      "code": "RO",
+      "name": "ROCHA"
+    },
+    {
+      "code": "SA",
+      "name": "SALTO"
+    },
+    {
+      "code": "SJ",
+      "name": "SAN JOSÉ"
+    },
+    {
+      "code": "SO",
+      "name": "SORIANO"
+    },
+    {
+      "code": "TA",
+      "name": "TACUAREMBÓ"
+    },
+    {
+      "code": "TT",
+      "name": "TREINTA Y TRES"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "code": "FR",
+  "name": "FRANCE",
+  "format": "%A%n%Z %C %X",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{2}[ ]?\\d{3}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality"
+  ]
+}

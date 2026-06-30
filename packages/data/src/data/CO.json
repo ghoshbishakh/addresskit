@@ -1,0 +1,21 @@
+{
+  "code": "CO",
+  "name": "COLOMBIA",
+  "format": "%A%n%C, %S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State"
+  },
+  "postalCodePattern": "^\\d{6}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

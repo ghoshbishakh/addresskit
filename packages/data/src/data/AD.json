@@ -1,0 +1,55 @@
+{
+  "code": "AD",
+  "name": "ANDORRA",
+  "format": "%A%n%Z %S",
+  "requiredFields": [
+    "line1",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "administrativeArea": "Parish",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "administrativeArea": "Parish",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^AD[1-7]0\\d$",
+  "administrativeAreaType": "parish",
+  "localityType": "city",
+  "upperFields": [
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "07",
+      "name": "Andorra la Vella"
+    },
+    {
+      "code": "02",
+      "name": "Canillo"
+    },
+    {
+      "code": "03",
+      "name": "Encamp"
+    },
+    {
+      "code": "08",
+      "name": "Escaldes Engordany"
+    },
+    {
+      "code": "04",
+      "name": "Lamassana"
+    },
+    {
+      "code": "05",
+      "name": "Ordino"
+    },
+    {
+      "code": "06",
+      "name": "Sant Julia de Loria"
+    }
+  ]
+}

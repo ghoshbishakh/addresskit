@@ -1,0 +1,129 @@
+{
+  "code": "CH--IT",
+  "name": "SWITZERLAND",
+  "format": "%A%nCH-%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "AR",
+      "name": "Appenzello Esterno"
+    },
+    {
+      "code": "AI",
+      "name": "Appenzello Interno"
+    },
+    {
+      "code": "AG",
+      "name": "Argovia"
+    },
+    {
+      "code": "BL",
+      "name": "Basilea Campagna"
+    },
+    {
+      "code": "BS",
+      "name": "Basilea Città"
+    },
+    {
+      "code": "BE",
+      "name": "Berna"
+    },
+    {
+      "code": "FR",
+      "name": "Friburgo"
+    },
+    {
+      "code": "GE",
+      "name": "Ginevra"
+    },
+    {
+      "code": "JU",
+      "name": "Giura"
+    },
+    {
+      "code": "GL",
+      "name": "Glarona"
+    },
+    {
+      "code": "GR",
+      "name": "Grigioni"
+    },
+    {
+      "code": "LU",
+      "name": "Lucerna"
+    },
+    {
+      "code": "NE",
+      "name": "Neuchâtel"
+    },
+    {
+      "code": "NW",
+      "name": "Nidvaldo"
+    },
+    {
+      "code": "OW",
+      "name": "Obvaldo"
+    },
+    {
+      "code": "SG",
+      "name": "San Gallo"
+    },
+    {
+      "code": "SH",
+      "name": "Sciaffusa"
+    },
+    {
+      "code": "SO",
+      "name": "Soletta"
+    },
+    {
+      "code": "SZ",
+      "name": "Svitto"
+    },
+    {
+      "code": "TI",
+      "name": "Ticino"
+    },
+    {
+      "code": "TG",
+      "name": "Turgovia"
+    },
+    {
+      "code": "UR",
+      "name": "Uri"
+    },
+    {
+      "code": "VS",
+      "name": "Vallese"
+    },
+    {
+      "code": "VD",
+      "name": "Vaud"
+    },
+    {
+      "code": "ZG",
+      "name": "Zugo"
+    },
+    {
+      "code": "ZH",
+      "name": "Zurigo"
+    }
+  ]
+}

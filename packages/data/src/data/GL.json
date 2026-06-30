@@ -1,0 +1,23 @@
+{
+  "code": "GL",
+  "name": "GREENLAND",
+  "format": "%A%n%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^39\\d{2}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

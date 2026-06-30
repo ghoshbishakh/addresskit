@@ -1,0 +1,97 @@
+{
+  "code": "NI",
+  "name": "NICARAGUA",
+  "format": "%A%n%Z%n%C, %S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Department",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Department",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "department",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "BO",
+      "name": "BOACO"
+    },
+    {
+      "code": "CA",
+      "name": "CARAZO"
+    },
+    {
+      "code": "CI",
+      "name": "CHINANDEGA"
+    },
+    {
+      "code": "CO",
+      "name": "CHONTALES"
+    },
+    {
+      "code": "ES",
+      "name": "ESTELI"
+    },
+    {
+      "code": "GR",
+      "name": "GRANADA"
+    },
+    {
+      "code": "JI",
+      "name": "JINOTEGA"
+    },
+    {
+      "code": "LE",
+      "name": "LEON"
+    },
+    {
+      "code": "MD",
+      "name": "MADRIZ"
+    },
+    {
+      "code": "MN",
+      "name": "MANAGUA"
+    },
+    {
+      "code": "MS",
+      "name": "MASAYA"
+    },
+    {
+      "code": "MT",
+      "name": "MATAGALPA"
+    },
+    {
+      "code": "NS",
+      "name": "NUEVA SEGOVIA"
+    },
+    {
+      "code": "AN",
+      "name": "RAAN"
+    },
+    {
+      "code": "AS",
+      "name": "RAAS"
+    },
+    {
+      "code": "SJ",
+      "name": "RIO SAN JUAN"
+    },
+    {
+      "code": "RI",
+      "name": "RIVAS"
+    }
+  ]
+}

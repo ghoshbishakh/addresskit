@@ -1,0 +1,19 @@
+{
+  "code": "TA",
+  "name": "TRISTAN DA CUNHA",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^TDCU 1ZZ$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

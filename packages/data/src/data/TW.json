@@ -1,0 +1,116 @@
+{
+  "code": "TW",
+  "name": "TAIWAN",
+  "format": "%Z%n%S%C%n%A",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "County",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "County",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{3}(\\d{2})?$",
+  "administrativeAreaType": "county",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "TXG",
+      "name": "台中市"
+    },
+    {
+      "code": "TPE",
+      "name": "台北市"
+    },
+    {
+      "code": "TTT",
+      "name": "台東縣"
+    },
+    {
+      "code": "TNN",
+      "name": "台南市"
+    },
+    {
+      "code": "ILA",
+      "name": "宜蘭縣"
+    },
+    {
+      "code": "HUA",
+      "name": "花蓮縣"
+    },
+    {
+      "code": "金門縣",
+      "name": "金門縣"
+    },
+    {
+      "code": "NAN",
+      "name": "南投縣"
+    },
+    {
+      "code": "PIF",
+      "name": "屏東縣"
+    },
+    {
+      "code": "MIA",
+      "name": "苗栗縣"
+    },
+    {
+      "code": "TAO",
+      "name": "桃園縣"
+    },
+    {
+      "code": "KHH",
+      "name": "高雄市"
+    },
+    {
+      "code": "KEE",
+      "name": "基隆市"
+    },
+    {
+      "code": "連江縣",
+      "name": "連江縣"
+    },
+    {
+      "code": "YUN",
+      "name": "雲林縣"
+    },
+    {
+      "code": "TPQ",
+      "name": "新北市"
+    },
+    {
+      "code": "HSZ",
+      "name": "新竹市"
+    },
+    {
+      "code": "HSQ",
+      "name": "新竹縣"
+    },
+    {
+      "code": "CYI",
+      "name": "嘉義市"
+    },
+    {
+      "code": "CYQ",
+      "name": "嘉義縣"
+    },
+    {
+      "code": "CHA",
+      "name": "彰化縣"
+    },
+    {
+      "code": "PEN",
+      "name": "澎湖縣"
+    }
+  ]
+}

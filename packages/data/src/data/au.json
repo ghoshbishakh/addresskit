@@ -1,21 +1,64 @@
 {
   "code": "AU",
+  "name": "AUSTRALIA",
   "format": "%A%n%C %S %Z",
-  "requiredFields": ["line1", "locality", "administrativeArea", "postalCode"],
-  "fieldLabels": { "postalCode": "Postcode", "administrativeArea": "State", "locality": "Suburb" },
-  "fieldPlaceholders": { "postalCode": "2000" },
-  "postalCodePattern": "\\d{4}",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{4}$",
   "administrativeAreaType": "state",
-  "localityType": "suburb",
-  "upperFields": ["locality", "administrativeArea"],
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ],
   "subRegions": [
-    { "code": "NSW", "name": "New South Wales" },
-    { "code": "VIC", "name": "Victoria" },
-    { "code": "QLD", "name": "Queensland" },
-    { "code": "WA", "name": "Western Australia" },
-    { "code": "SA", "name": "South Australia" },
-    { "code": "TAS", "name": "Tasmania" },
-    { "code": "ACT", "name": "Australian Capital Territory" },
-    { "code": "NT", "name": "Northern Territory" }
+    {
+      "code": "ACT",
+      "name": "Australian Capital Territory"
+    },
+    {
+      "code": "NSW",
+      "name": "New South Wales"
+    },
+    {
+      "code": "NT",
+      "name": "Northern Territory"
+    },
+    {
+      "code": "QLD",
+      "name": "Queensland"
+    },
+    {
+      "code": "SA",
+      "name": "South Australia"
+    },
+    {
+      "code": "TAS",
+      "name": "Tasmania"
+    },
+    {
+      "code": "VIC",
+      "name": "Victoria"
+    },
+    {
+      "code": "WA",
+      "name": "Western Australia"
+    }
   ]
 }

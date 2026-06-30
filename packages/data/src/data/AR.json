@@ -1,0 +1,126 @@
+{
+  "code": "AR",
+  "name": "ARGENTINA",
+  "format": "%A%n%Z %C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^([A-HJ-NP-Z])?\\d{4}([A-Z]{3})?$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "subRegions": [
+    {
+      "code": "B",
+      "name": "Buenos Aires"
+    },
+    {
+      "code": "C",
+      "name": "Capital Federal"
+    },
+    {
+      "code": "K",
+      "name": "Catamarca"
+    },
+    {
+      "code": "H",
+      "name": "Chaco"
+    },
+    {
+      "code": "U",
+      "name": "Chubut"
+    },
+    {
+      "code": "X",
+      "name": "Córdoba"
+    },
+    {
+      "code": "W",
+      "name": "Corrientes"
+    },
+    {
+      "code": "E",
+      "name": "Entre Ríos"
+    },
+    {
+      "code": "P",
+      "name": "Formosa"
+    },
+    {
+      "code": "Y",
+      "name": "Jujuy"
+    },
+    {
+      "code": "L",
+      "name": "La Pampa"
+    },
+    {
+      "code": "F",
+      "name": "La Rioja"
+    },
+    {
+      "code": "M",
+      "name": "Mendoza"
+    },
+    {
+      "code": "N",
+      "name": "Misiones"
+    },
+    {
+      "code": "Q",
+      "name": "Neuquén"
+    },
+    {
+      "code": "R",
+      "name": "Río Negro"
+    },
+    {
+      "code": "A",
+      "name": "Salta"
+    },
+    {
+      "code": "J",
+      "name": "San Juan"
+    },
+    {
+      "code": "D",
+      "name": "San Luis"
+    },
+    {
+      "code": "Z",
+      "name": "Santa Cruz"
+    },
+    {
+      "code": "S",
+      "name": "Santa Fe"
+    },
+    {
+      "code": "G",
+      "name": "Santiago del Estero"
+    },
+    {
+      "code": "V",
+      "name": "Tierra del Fuego"
+    },
+    {
+      "code": "T",
+      "name": "Tucumán"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "code": "SH",
+  "name": "SAINT HELENA",
+  "format": "%A%n%X%n%C%n%Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(ASCN|STHL) 1ZZ$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "postalCode"
+  ]
+}

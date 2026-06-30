@@ -1,0 +1,19 @@
+{
+  "code": "BT",
+  "name": "BHUTAN",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

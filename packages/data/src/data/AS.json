@@ -1,0 +1,31 @@
+{
+  "code": "AS",
+  "name": "AMERICAN SAMOA",
+  "format": "%A%n%C %S %Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "ZIP Code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "90210"
+  },
+  "postalCodePattern": "^96799$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ]
+}

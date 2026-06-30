@@ -1,0 +1,19 @@
+{
+  "code": "AL",
+  "name": "ALBANIA",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

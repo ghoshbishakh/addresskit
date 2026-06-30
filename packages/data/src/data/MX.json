@@ -1,0 +1,160 @@
+{
+  "code": "MX",
+  "name": "MEXICO",
+  "format": "%A%n%D%n%Z %C, %S",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "subRegions": [
+    {
+      "code": "AGU",
+      "name": "Aguascalientes"
+    },
+    {
+      "code": "BCN",
+      "name": "Baja California"
+    },
+    {
+      "code": "BCS",
+      "name": "Baja California Sur"
+    },
+    {
+      "code": "CAM",
+      "name": "Campeche"
+    },
+    {
+      "code": "CHP",
+      "name": "Chiapas"
+    },
+    {
+      "code": "CHH",
+      "name": "Chihuahua"
+    },
+    {
+      "code": "COA",
+      "name": "Coahuila"
+    },
+    {
+      "code": "COL",
+      "name": "Colima"
+    },
+    {
+      "code": "DIF",
+      "name": "Distrito Federal"
+    },
+    {
+      "code": "DUR",
+      "name": "Durango"
+    },
+    {
+      "code": "MEX",
+      "name": "Estado de México"
+    },
+    {
+      "code": "GUA",
+      "name": "Guanajuato"
+    },
+    {
+      "code": "GRO",
+      "name": "Guerrero"
+    },
+    {
+      "code": "HID",
+      "name": "Hidalgo"
+    },
+    {
+      "code": "JAL",
+      "name": "Jalisco"
+    },
+    {
+      "code": "MIC",
+      "name": "Michoacán"
+    },
+    {
+      "code": "MOR",
+      "name": "Morelos"
+    },
+    {
+      "code": "NAY",
+      "name": "Nayarit"
+    },
+    {
+      "code": "NLE",
+      "name": "Nuevo León"
+    },
+    {
+      "code": "OAX",
+      "name": "Oaxaca"
+    },
+    {
+      "code": "PUE",
+      "name": "Puebla"
+    },
+    {
+      "code": "QUE",
+      "name": "Querétaro"
+    },
+    {
+      "code": "ROO",
+      "name": "Quintana Roo"
+    },
+    {
+      "code": "SLP",
+      "name": "San Luís Potosí"
+    },
+    {
+      "code": "SIN",
+      "name": "Sinalóa"
+    },
+    {
+      "code": "SON",
+      "name": "Sonora"
+    },
+    {
+      "code": "TAB",
+      "name": "Tabasco"
+    },
+    {
+      "code": "TAM",
+      "name": "Tamaulipas"
+    },
+    {
+      "code": "TLA",
+      "name": "Tlaxcala"
+    },
+    {
+      "code": "VER",
+      "name": "Veracruz"
+    },
+    {
+      "code": "YUC",
+      "name": "Yucatán"
+    },
+    {
+      "code": "ZAC",
+      "name": "Zacatecas"
+    }
+  ]
+}

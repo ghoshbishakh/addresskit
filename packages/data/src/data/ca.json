@@ -1,20 +1,86 @@
 {
   "code": "CA",
+  "name": "CANADA",
   "format": "%A%n%C %S %Z",
-  "requiredFields": ["line1", "locality", "administrativeArea", "postalCode"],
-  "fieldLabels": { "administrativeArea": "Province", "postalCode": "Postal Code", "locality": "City" },
-  "fieldPlaceholders": { "postalCode": "K1A 0B1" },
-  "postalCodePattern": "[A-Z]\\d[A-Z] ?\\d[A-Z]\\d",
-  "administrativeAreaType": "province",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^[ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]?\\d[ABCEGHJ-NPRSTV-Z]\\d$",
+  "administrativeAreaType": "state",
   "localityType": "city",
-  "upperFields": ["locality", "administrativeArea"],
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
   "subRegions": [
-    { "code": "AB", "name": "Alberta" }, { "code": "BC", "name": "British Columbia" },
-    { "code": "MB", "name": "Manitoba" }, { "code": "NB", "name": "New Brunswick" },
-    { "code": "NL", "name": "Newfoundland and Labrador" },
-    { "code": "NS", "name": "Nova Scotia" }, { "code": "NT", "name": "Northwest Territories" },
-    { "code": "NU", "name": "Nunavut" }, { "code": "ON", "name": "Ontario" },
-    { "code": "PE", "name": "Prince Edward Island" }, { "code": "QC", "name": "Quebec" },
-    { "code": "SK", "name": "Saskatchewan" }, { "code": "YT", "name": "Yukon" }
+    {
+      "code": "AB",
+      "name": "Alberta"
+    },
+    {
+      "code": "BC",
+      "name": "British Columbia"
+    },
+    {
+      "code": "MB",
+      "name": "Manitoba"
+    },
+    {
+      "code": "NB",
+      "name": "New Brunswick"
+    },
+    {
+      "code": "NL",
+      "name": "Newfoundland and Labrador"
+    },
+    {
+      "code": "NT",
+      "name": "Northwest Territories"
+    },
+    {
+      "code": "NS",
+      "name": "Nova Scotia"
+    },
+    {
+      "code": "NU",
+      "name": "Nunavut"
+    },
+    {
+      "code": "ON",
+      "name": "Ontario"
+    },
+    {
+      "code": "PE",
+      "name": "Prince Edward Island"
+    },
+    {
+      "code": "QC",
+      "name": "Quebec"
+    },
+    {
+      "code": "SK",
+      "name": "Saskatchewan"
+    },
+    {
+      "code": "YT",
+      "name": "Yukon"
+    }
   ]
 }

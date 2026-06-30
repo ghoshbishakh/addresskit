@@ -1,0 +1,19 @@
+{
+  "code": "AI",
+  "name": "ANGUILLA",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^2640$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

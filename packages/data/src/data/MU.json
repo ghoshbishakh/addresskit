@@ -1,0 +1,25 @@
+{
+  "code": "MU",
+  "name": "MAURITIUS",
+  "format": "%A%n%Z%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(\\d{3}[A-Z]{2}\\d{3})?$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "postalCode"
+  ]
+}

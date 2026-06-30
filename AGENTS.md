@@ -11,6 +11,10 @@
 - No nominalizations. Write "validate the address", not "perform validation on the address".
 - No redundant qualifiers: "totally", "completely", "absolutely", "definitely", "literally", "essentially".
 
+## Questions
+
+- Answer questions concisely. Do not implement or write code unless asked to.
+
 ## Style
 
 - Short phrases. One idea per sentence.

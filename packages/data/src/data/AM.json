@@ -1,0 +1,69 @@
+{
+  "code": "AM",
+  "name": "ARMENIA",
+  "format": "%A%n%Z%n%C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(37)?\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "AG",
+      "name": "Արագածոտն"
+    },
+    {
+      "code": "AR",
+      "name": "Արարատ"
+    },
+    {
+      "code": "AV",
+      "name": "Արմավիր"
+    },
+    {
+      "code": "GR",
+      "name": "Գեղարքունիք"
+    },
+    {
+      "code": "ER",
+      "name": "Երևան"
+    },
+    {
+      "code": "LO",
+      "name": "Լոռի"
+    },
+    {
+      "code": "KT",
+      "name": "Կոտայք"
+    },
+    {
+      "code": "SH",
+      "name": "Շիրակ"
+    },
+    {
+      "code": "SU",
+      "name": "Սյունիք"
+    },
+    {
+      "code": "VD",
+      "name": "Վայոց ձոր"
+    },
+    {
+      "code": "TV",
+      "name": "Տավուշ"
+    }
+  ]
+}

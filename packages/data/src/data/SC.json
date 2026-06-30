@@ -1,0 +1,23 @@
+{
+  "code": "SC",
+  "name": "SEYCHELLES",
+  "format": "%A%n%C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "upperFields": [
+    "administrativeArea"
+  ]
+}

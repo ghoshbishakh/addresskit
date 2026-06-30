@@ -1,0 +1,126 @@
+{
+  "code": "IE",
+  "name": "IRELAND",
+  "format": "%A%n%C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "County"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "County"
+  },
+  "administrativeAreaType": "county",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "CW",
+      "name": "Co. Carlow"
+    },
+    {
+      "code": "CN",
+      "name": "Co. Cavan"
+    },
+    {
+      "code": "CE",
+      "name": "Co. Clare"
+    },
+    {
+      "code": "C",
+      "name": "Co. Cork"
+    },
+    {
+      "code": "DL",
+      "name": "Co. Donegal"
+    },
+    {
+      "code": "D",
+      "name": "Co. Dublin"
+    },
+    {
+      "code": "G",
+      "name": "Co. Galway"
+    },
+    {
+      "code": "KY",
+      "name": "Co. Kerry"
+    },
+    {
+      "code": "KE",
+      "name": "Co. Kildare"
+    },
+    {
+      "code": "KK",
+      "name": "Co. Kilkenny"
+    },
+    {
+      "code": "LS",
+      "name": "Co. Laois"
+    },
+    {
+      "code": "LM",
+      "name": "Co. Leitrim"
+    },
+    {
+      "code": "LK",
+      "name": "Co. Limerick"
+    },
+    {
+      "code": "LD",
+      "name": "Co. Longford"
+    },
+    {
+      "code": "LH",
+      "name": "Co. Louth"
+    },
+    {
+      "code": "MO",
+      "name": "Co. Mayo"
+    },
+    {
+      "code": "MH",
+      "name": "Co. Meath"
+    },
+    {
+      "code": "MN",
+      "name": "Co. Monaghan"
+    },
+    {
+      "code": "OY",
+      "name": "Co. Offaly"
+    },
+    {
+      "code": "RN",
+      "name": "Co. Roscommon"
+    },
+    {
+      "code": "SO",
+      "name": "Co. Sligo"
+    },
+    {
+      "code": "TA",
+      "name": "Co. Tipperary"
+    },
+    {
+      "code": "WD",
+      "name": "Co. Waterford"
+    },
+    {
+      "code": "WH",
+      "name": "Co. Westmeath"
+    },
+    {
+      "code": "WX",
+      "name": "Co. Wexford"
+    },
+    {
+      "code": "WW",
+      "name": "Co. Wicklow"
+    }
+  ]
+}

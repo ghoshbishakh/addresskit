@@ -47,6 +47,7 @@ export interface ValidationResult {
 
 export interface CountryAddressConfig {
   code: string;
+  name?: string;
   format: string;
   requiredFields: FieldId[];
   fieldLabels: Partial<Record<FieldId, string>>;

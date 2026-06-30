@@ -1,0 +1,27 @@
+{
+  "code": "PR",
+  "name": "PUERTO RICO",
+  "format": "%A%n%C PR %Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "ZIP Code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "90210"
+  },
+  "postalCodePattern": "^00[679]\\d{2}([ \\-]\\d{4})?$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality"
+  ]
+}

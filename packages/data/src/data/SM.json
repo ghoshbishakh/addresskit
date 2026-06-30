@@ -1,0 +1,22 @@
+{
+  "code": "SM",
+  "name": "SAN MARINO",
+  "format": "%A%n%Z %C",
+  "requiredFields": [
+    "line1",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^4789\\d$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

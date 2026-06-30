@@ -1,0 +1,85 @@
+{
+  "code": "CL",
+  "name": "CHILE",
+  "format": "%A%n%Z %C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{7}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "AN",
+      "name": "Antofagasta"
+    },
+    {
+      "code": "AR",
+      "name": "Araucanía"
+    },
+    {
+      "code": "AP",
+      "name": "Arica y Parinacota"
+    },
+    {
+      "code": "AT",
+      "name": "Atacama"
+    },
+    {
+      "code": "AI",
+      "name": "Aysén del General Carlos Ibáñez del Campo"
+    },
+    {
+      "code": "BI",
+      "name": "Biobío"
+    },
+    {
+      "code": "CO",
+      "name": "Coquimbo"
+    },
+    {
+      "code": "LI",
+      "name": "Libertador General Bernardo O'Higgins"
+    },
+    {
+      "code": "LL",
+      "name": "Los Lagos"
+    },
+    {
+      "code": "LR",
+      "name": "Los Ríos"
+    },
+    {
+      "code": "MA",
+      "name": "Magallanes y de la Antártica Chilena"
+    },
+    {
+      "code": "ML",
+      "name": "Maule"
+    },
+    {
+      "code": "RM",
+      "name": "Metropolitana de Santiago"
+    },
+    {
+      "code": "TA",
+      "name": "Tarapacá"
+    },
+    {
+      "code": "VS",
+      "name": "Valparaíso"
+    }
+  ]
+}

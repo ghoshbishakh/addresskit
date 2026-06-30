@@ -1,0 +1,19 @@
+{
+  "code": "BB",
+  "name": "BARBADOS",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^(BB\\d{5})?$",
+  "administrativeAreaType": "parish",
+  "localityType": "city"
+}

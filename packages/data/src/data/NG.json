@@ -1,0 +1,177 @@
+{
+  "code": "NG",
+  "name": "NIGERIA",
+  "format": "%A%n%C %Z%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(\\d{6})?$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "AB",
+      "name": "ABIA"
+    },
+    {
+      "code": "AD",
+      "name": "ADAMAWA"
+    },
+    {
+      "code": "AK",
+      "name": "AKWA IBOM"
+    },
+    {
+      "code": "AN",
+      "name": "ANAMBRA"
+    },
+    {
+      "code": "BA",
+      "name": "BAUCHI"
+    },
+    {
+      "code": "BY",
+      "name": "BAYELSA"
+    },
+    {
+      "code": "BE",
+      "name": "BENUE"
+    },
+    {
+      "code": "BO",
+      "name": "BORNO"
+    },
+    {
+      "code": "CR",
+      "name": "CROSS RIVER"
+    },
+    {
+      "code": "DE",
+      "name": "DELTA"
+    },
+    {
+      "code": "EB",
+      "name": "EBONYI"
+    },
+    {
+      "code": "ED",
+      "name": "EDO"
+    },
+    {
+      "code": "EK",
+      "name": "EKITI"
+    },
+    {
+      "code": "EN",
+      "name": "ENUGU"
+    },
+    {
+      "code": "FC",
+      "name": "FCT-ABUJA"
+    },
+    {
+      "code": "GO",
+      "name": "GOMBE"
+    },
+    {
+      "code": "IM",
+      "name": "IMO"
+    },
+    {
+      "code": "JI",
+      "name": "JIGAWA"
+    },
+    {
+      "code": "KD",
+      "name": "KADUNA"
+    },
+    {
+      "code": "KN",
+      "name": "KANO"
+    },
+    {
+      "code": "KT",
+      "name": "KATSINA"
+    },
+    {
+      "code": "KE",
+      "name": "KEBBI"
+    },
+    {
+      "code": "KO",
+      "name": "KOGI"
+    },
+    {
+      "code": "KW",
+      "name": "KWARA"
+    },
+    {
+      "code": "LA",
+      "name": "LAGOS"
+    },
+    {
+      "code": "NA",
+      "name": "NASSARAWA"
+    },
+    {
+      "code": "NI",
+      "name": "NIGER"
+    },
+    {
+      "code": "OG",
+      "name": "OGUN"
+    },
+    {
+      "code": "ON",
+      "name": "ONDO"
+    },
+    {
+      "code": "OS",
+      "name": "OSUN"
+    },
+    {
+      "code": "OY",
+      "name": "OYO"
+    },
+    {
+      "code": "PL",
+      "name": "PLATEAU"
+    },
+    {
+      "code": "RI",
+      "name": "RIVERS"
+    },
+    {
+      "code": "SO",
+      "name": "SOKOTO"
+    },
+    {
+      "code": "TA",
+      "name": "TARABA"
+    },
+    {
+      "code": "YO",
+      "name": "YOBE"
+    },
+    {
+      "code": "ZA",
+      "name": "ZAMFARA"
+    }
+  ]
+}

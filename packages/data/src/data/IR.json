@@ -1,0 +1,23 @@
+{
+  "code": "IR",
+  "name": "IRAN",
+  "format": "%S%n%C, %D%n%A%n%Z",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}-?\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

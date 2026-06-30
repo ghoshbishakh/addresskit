@@ -1,0 +1,19 @@
+{
+  "code": "VC",
+  "name": "SAINT VINCENT AND THE GRENADINES (ANTILLES)",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^VC\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

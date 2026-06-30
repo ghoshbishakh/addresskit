@@ -1,0 +1,16 @@
+{
+  "code": "MO",
+  "name": "MACAO",
+  "format": "%A",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

@@ -1,0 +1,22 @@
+{
+  "code": "ZM",
+  "name": "ZAMBIA",
+  "format": "%A%n%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

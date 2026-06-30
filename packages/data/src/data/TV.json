@@ -1,0 +1,63 @@
+{
+  "code": "TV",
+  "name": "TUVALU",
+  "format": "%A%n%X%n%C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island"
+  },
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "FUN",
+      "name": "FUNAFUTI"
+    },
+    {
+      "code": "NMG",
+      "name": "NANUMANGA"
+    },
+    {
+      "code": "NMA",
+      "name": "NANUMEA"
+    },
+    {
+      "code": "NIULAKITA",
+      "name": "NIULAKITA"
+    },
+    {
+      "code": "NIT",
+      "name": "NIUTAO"
+    },
+    {
+      "code": "NUI",
+      "name": "NUI"
+    },
+    {
+      "code": "NKF",
+      "name": "NUKUFETAU"
+    },
+    {
+      "code": "NKL",
+      "name": "NUKULAELAE"
+    },
+    {
+      "code": "VAI",
+      "name": "VAITUPU"
+    }
+  ]
+}

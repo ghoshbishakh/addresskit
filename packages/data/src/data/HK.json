@@ -1,0 +1,36 @@
+{
+  "code": "HK",
+  "name": "HONG KONG",
+  "format": "%S%n%A",
+  "requiredFields": [
+    "line1",
+    "administrativeArea"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "administrativeArea": "Area"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "administrativeArea": "Area"
+  },
+  "administrativeAreaType": "area",
+  "localityType": "city",
+  "upperFields": [
+    "administrativeArea"
+  ],
+  "subRegions": [
+    {
+      "code": "九龍",
+      "name": "九龍"
+    },
+    {
+      "code": "香港島",
+      "name": "香港島"
+    },
+    {
+      "code": "新界",
+      "name": "新界"
+    }
+  ]
+}

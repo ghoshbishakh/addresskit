@@ -5,7 +5,7 @@ describe("loadMetadata", () => {
   it("loads US metadata", async () => {
     const meta = await loadMetadata("US");
     expect(meta.code).toBe("US");
-    expect(meta.format).toBe("%A%n%C, %S %Z");
+    expect(meta.format).toBe("%A%n%C %S %Z");
     expect(meta.requiredFields).toContain("line1");
     expect(meta.subRegions).toBeDefined();
   });
@@ -19,7 +19,7 @@ describe("loadMetadata", () => {
   it("loads DE metadata", async () => {
     const meta = await loadMetadata("DE");
     expect(meta.code).toBe("DE");
-    expect(meta.postalCodePattern).toBe("\\d{5}");
+    expect(meta.postalCodePattern).toBe("^\\d{5}$");
   });
 
   it("loads JP metadata", async () => {

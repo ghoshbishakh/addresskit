@@ -1,0 +1,19 @@
+{
+  "code": "VG",
+  "name": "VIRGIN ISLANDS (BRITISH)",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^VG\\d{4}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

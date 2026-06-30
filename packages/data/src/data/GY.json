@@ -1,0 +1,18 @@
+{
+  "code": "GY",
+  "name": "GUYANA",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

@@ -1,0 +1,133 @@
+{
+  "code": "EG",
+  "name": "EGYPT",
+  "format": "%A%n%C%n%S%n%Z",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{5}$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "ASN",
+      "name": "أسوان"
+    },
+    {
+      "code": "AST",
+      "name": "أسيوط"
+    },
+    {
+      "code": "LX",
+      "name": "الأقصر"
+    },
+    {
+      "code": "ALX",
+      "name": "الإسكندرية"
+    },
+    {
+      "code": "IS",
+      "name": "الإسماعيلية"
+    },
+    {
+      "code": "BA",
+      "name": "البحر الأحمر"
+    },
+    {
+      "code": "BH",
+      "name": "البحيرة"
+    },
+    {
+      "code": "GZ",
+      "name": "الجيزة"
+    },
+    {
+      "code": "DK",
+      "name": "الدقهلية"
+    },
+    {
+      "code": "SUZ",
+      "name": "السويس"
+    },
+    {
+      "code": "SHR",
+      "name": "الشرقية"
+    },
+    {
+      "code": "GH",
+      "name": "الغربية"
+    },
+    {
+      "code": "FYM",
+      "name": "الفيوم"
+    },
+    {
+      "code": "C",
+      "name": "القاهرة"
+    },
+    {
+      "code": "KB",
+      "name": "القليوبية"
+    },
+    {
+      "code": "MNF",
+      "name": "المنوفية"
+    },
+    {
+      "code": "MN",
+      "name": "المنيا"
+    },
+    {
+      "code": "WAD",
+      "name": "الوادي الجديد"
+    },
+    {
+      "code": "BNS",
+      "name": "بني سويف"
+    },
+    {
+      "code": "PTS",
+      "name": "بورسعيد"
+    },
+    {
+      "code": "JS",
+      "name": "جنوب سيناء"
+    },
+    {
+      "code": "DT",
+      "name": "دمياط"
+    },
+    {
+      "code": "SHG",
+      "name": "سوهاج"
+    },
+    {
+      "code": "SIN",
+      "name": "شمال سيناء"
+    },
+    {
+      "code": "KN",
+      "name": "قنا"
+    },
+    {
+      "code": "KFS",
+      "name": "كفر الشيخ"
+    },
+    {
+      "code": "MT",
+      "name": "مطروح"
+    }
+  ]
+}

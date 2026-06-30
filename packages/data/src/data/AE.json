@@ -1,0 +1,19 @@
+{
+  "code": "AE",
+  "name": "UNITED ARAB EMIRATES",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1",
+    "locality"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

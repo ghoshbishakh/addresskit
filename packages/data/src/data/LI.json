@@ -1,0 +1,23 @@
+{
+  "code": "LI",
+  "name": "LIECHTENSTEIN",
+  "format": "%A%nFL-%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^(948[5-9])|(949[0-7])$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

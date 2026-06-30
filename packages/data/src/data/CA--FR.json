@@ -1,0 +1,86 @@
+{
+  "code": "CA--FR",
+  "name": "CANADA",
+  "format": "%A%n%C %S %Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^[ABCEGHJKLMNPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]?\\d[ABCEGHJ-NPRSTV-Z]\\d$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "subRegions": [
+    {
+      "code": "AB",
+      "name": "Alberta"
+    },
+    {
+      "code": "BC",
+      "name": "Colombie-Britannique"
+    },
+    {
+      "code": "PE",
+      "name": "Ile-du-Prince-Edouard"
+    },
+    {
+      "code": "MB",
+      "name": "Manitoba"
+    },
+    {
+      "code": "NB",
+      "name": "Nouveau-Brunswick"
+    },
+    {
+      "code": "NS",
+      "name": "Nouvelle-Ecosse"
+    },
+    {
+      "code": "NU",
+      "name": "Nunavut"
+    },
+    {
+      "code": "ON",
+      "name": "Ontario"
+    },
+    {
+      "code": "QC",
+      "name": "Québec"
+    },
+    {
+      "code": "SK",
+      "name": "Saskatchewan"
+    },
+    {
+      "code": "NL",
+      "name": "Terre-Neuve-et-Labrador"
+    },
+    {
+      "code": "NT",
+      "name": "Territoires du Nord-Ouest"
+    },
+    {
+      "code": "YT",
+      "name": "Yukon"
+    }
+  ]
+}

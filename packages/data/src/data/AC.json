@@ -1,0 +1,19 @@
+{
+  "code": "AC",
+  "name": "ASCENSION ISLAND",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "postalCodePattern": "^ASCN 1ZZ$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

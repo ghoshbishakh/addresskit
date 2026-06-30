@@ -1,0 +1,61 @@
+{
+  "code": "CV",
+  "name": "CAPE VERDE",
+  "format": "%A%n%Z %C%n%S",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "Island",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{4}$",
+  "administrativeAreaType": "island",
+  "localityType": "city",
+  "subRegions": [
+    {
+      "code": "BV",
+      "name": "BOA VISTA"
+    },
+    {
+      "code": "BR",
+      "name": "BRAVA"
+    },
+    {
+      "code": "FOGO",
+      "name": "FOGO"
+    },
+    {
+      "code": "MA",
+      "name": "MAIO"
+    },
+    {
+      "code": "SL",
+      "name": "SAL"
+    },
+    {
+      "code": "SANTIAGO",
+      "name": "SANTIAGO"
+    },
+    {
+      "code": "SANTO ANTÃO",
+      "name": "SANTO ANTÃO"
+    },
+    {
+      "code": "SN",
+      "name": "SÃO NICOLAU"
+    },
+    {
+      "code": "SV",
+      "name": "SÃO VICENTE"
+    }
+  ]
+}

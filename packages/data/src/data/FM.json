@@ -1,0 +1,31 @@
+{
+  "code": "FM",
+  "name": "MICRONESIA (Federated State Of)",
+  "format": "%A%n%C %S %Z",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "administrativeArea",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "ZIP Code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "administrativeArea": "State",
+    "postalCode": "90210"
+  },
+  "postalCodePattern": "^(9694[1-4])([ \\-]\\d{4})?$",
+  "administrativeAreaType": "state",
+  "localityType": "city",
+  "upperFields": [
+    "line1",
+    "locality",
+    "administrativeArea"
+  ]
+}

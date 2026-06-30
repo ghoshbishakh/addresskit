@@ -1,0 +1,23 @@
+{
+  "code": "AX",
+  "name": "FINLAND",
+  "format": "%A%nAX-%Z %C%nÅLAND",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^22\\d{3}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

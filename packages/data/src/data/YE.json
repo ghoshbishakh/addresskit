@@ -1,0 +1,19 @@
+{
+  "code": "YE",
+  "name": "YEMEN",
+  "format": "%A%n%C",
+  "requiredFields": [
+    "line1",
+    "locality"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

@@ -1,0 +1,23 @@
+{
+  "code": "PT",
+  "name": "PORTUGAL",
+  "format": "%A%n%Z %C",
+  "requiredFields": [
+    "line1",
+    "locality",
+    "postalCode"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "Postal code"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City",
+    "postalCode": "SW1A 1AA"
+  },
+  "postalCodePattern": "^\\d{4}-\\d{3}$",
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}

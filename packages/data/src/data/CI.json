@@ -1,0 +1,18 @@
+{
+  "code": "CI",
+  "name": "COTE D'IVOIRE",
+  "format": "%X %A %C %X",
+  "requiredFields": [
+    "line1"
+  ],
+  "fieldLabels": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "fieldPlaceholders": {
+    "line1": "Street address",
+    "locality": "City"
+  },
+  "administrativeAreaType": "state",
+  "localityType": "city"
+}
