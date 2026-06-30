@@ -94,16 +94,16 @@
 ### 2.2 React Hook Form Integration
 
 - [x] Build `<AddressController>`  -  RHF-compatible wrapper
-- [ ] Provide controlled integration example
+- [x] Provide controlled integration example
 - [ ] Test with RHF validation modes
 
 ### 2.3 Examples  -  Next.js
 
 - [x] Create `packages/examples/nextjs/`
 - [x] Basic address form example
-- [ ] Country-restricted form example
-- [ ] Headless rendering example
-- [ ] RHF integration example
+- [x] Country-restricted form example
+- [x] Headless rendering example
+- [x] RHF integration example
 
 ### 2.4 Examples  -  Vite
 
@@ -124,12 +124,12 @@
 
 ### 2.7 Documentation  -  Phase 2
 
-- [ ] Write React integration guide
-- [ ] Write headless usage guide
-- [ ] Write Next.js guide
-- [ ] Write Vite guide
+- [x] Write React integration guide
+- [x] Write headless usage guide
+- [x] Write Next.js guide
+- [x] Write Vite guide
 - [ ] Write Remix guide
-- [ ] Write React Hook Form guide
+- [x] Write React Hook Form guide
 
 ### 2.8 @addresskit/providers/dr5hn  -  Countries/States/Cities Provider
 
