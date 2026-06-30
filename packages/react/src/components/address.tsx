@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { createEngine } from "@addresskit/core";
 import type { Address, AddressProvider, Field, FieldId } from "@addresskit/core";
 import { useAddressProvider } from "../context";
@@ -22,8 +22,10 @@ export function Address({
 }: AddressProps) {
   const ctxProvider = useAddressProvider();
   const provider = explicitProvider ?? ctxProvider;
-  const engine = createEngine(provider);
+  const engine = useMemo(() => createEngine(provider), [provider]);
   const prevCountry = useRef<string | null>(value.country ?? null);
+  const valueRef = useRef(value);
+  valueRef.current = value;
 
   const [fields, setFields] = useState<Field[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -62,7 +64,8 @@ export function Address({
 
   const handleFieldChange = useCallback(
     (id: FieldId, fieldValue: string) => {
-      const updated = { ...value, [id]: fieldValue || undefined };
+      const current = valueRef.current;
+      const updated = { ...current, [id]: fieldValue || undefined };
 
       if (id === "administrativeArea") {
         const cleaned = engine.clearState(updated as Address);
@@ -72,7 +75,7 @@ export function Address({
 
       onChange(updated);
     },
-    [value, onChange, engine],
+    [onChange, engine],
   );
 
   useEffect(() => {
@@ -91,7 +94,7 @@ export function Address({
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [value, engine]);
+  }, [value.country, value.line1, value.locality, value.administrativeArea, value.postalCode, engine]);
 
   return (
     <div>
