@@ -19,7 +19,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@addresskit/core": "workspace:*"
+    "@addresskit/core": "workspace:*",
+    "@addresskit/data": "workspace:*"
   },
   "engines": {
     "node": ">=18"

@@ -40,6 +40,9 @@ importers:
       '@addresskit/core':
         specifier: workspace:*
         version: link:../../core
+      '@addresskit/data':
+        specifier: workspace:*
+        version: link:../../data
 
   packages/providers/google:
     dependencies:
