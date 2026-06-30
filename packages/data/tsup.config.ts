@@ -5,6 +5,8 @@ export default defineConfig({
   format: ["esm", "cjs"],
   sourcemap: true,
   clean: true,
-  splitting: false,
+  loader: {
+    ".json": "copy",
+  },
   external: ["@addresskit/core"],
 });
