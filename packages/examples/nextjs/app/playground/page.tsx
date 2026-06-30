@@ -40,7 +40,7 @@ export default function PlaygroundPage() {
 
   async function handleFormat() {
     if (!value.country || !value.line1) return;
-    setFormatted(engine.format(value as AddressType));
+    setFormatted(await engine.format(value as AddressType));
     setValidationResult(null);
   }
 

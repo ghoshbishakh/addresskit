@@ -15,6 +15,20 @@ const states = await provider.getStates("US");
 const metadata = await provider.getMetadata("US");
 ```
 
+### Country list without loading metadata
+
+`getCountries()` returns a bundled `{ code, name }` index, so you can populate a
+country selector without loading all 256 per-country metadata files. The
+libaddressinput provider's `getCountries()` is backed by it.
+
+```tsx
+import { getCountries, getCountryName, getStateName } from "@addresskit/data";
+
+getCountries();                  // [{ code: "US", name: "UNITED STATES" }, ...]
+getCountryName("US");            // "UNITED STATES"
+await getStateName("US", "CA");  // "California"
+```
+
 ## `@addresskit/providers-dr5hn`
 
 250 countries with per-country state/region lists from the dr5hn Countries-States-Cities database. Falls back to generic format for countries without libaddressinput metadata.

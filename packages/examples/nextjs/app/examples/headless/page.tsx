@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createEngine } from "@addresskit/core";
 import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import { getCountries } from "@addresskit/data";
 import type { Address, Field } from "@addresskit/core";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
@@ -10,10 +11,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui
 const provider = createLibaddressinputProvider();
 const engine = createEngine(provider);
 
-const countryNames: Record<string, string> = {
-  US: "United States", GB: "United Kingdom", CA: "Canada",
-  DE: "Germany", JP: "Japan", AU: "Australia", BR: "Brazil",
-};
+// Lightweight country index from @addresskit/data — no per-country metadata
+// is loaded just to populate this list.
+const countries = getCountries();
 
 export default function HeadlessPage() {
   const [country, setCountry] = useState("US");
@@ -48,7 +48,7 @@ export default function HeadlessPage() {
 
   async function handleFormat() {
     if (!values.country || !values.line1) return;
-    setFormatted(engine.format(values as Address));
+    setFormatted(await engine.format(values as Address));
   }
 
   return (
@@ -67,7 +67,7 @@ export default function HeadlessPage() {
               onChange={(e) => handleCountryChange(e.target.value)}
               className="w-full h-10 px-3 rounded-lg border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {Object.entries(countryNames).map(([code, name]) => (
+              {countries.map(({ code, name }) => (
                 <option key={code} value={code}>{name}</option>
               ))}
             </select>

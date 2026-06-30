@@ -51,24 +51,44 @@ const result = await engine.validate({
   country: "US",
   line1: "",
 });
-// { valid: false, errors: [{ field: "line1", message: "Required" }] }
+// { valid: false, errors: [{ field: "line1", message: "Street address is required" }] }
 ```
 
 ## `format`
 
-Formats an address string according to the country's format pattern.
+Formats an address string according to the country's format pattern. `format`
+is **async** — it loads the country metadata on demand, so you don't need to
+call `getSchema`/`validate` first. The `administrativeArea` **code is resolved
+to its display name** (e.g. `CA` → `California`).
 
 ```tsx
-const formatted = engine.format({
+const formatted = await engine.format({
   country: "US",
   line1: "123 Main St",
   locality: "San Francisco",
   administrativeArea: "CA",
   postalCode: "94102",
 });
-// "123 Main St\nSan Francisco CA 94102"
+// "123 Main St\nSAN FRANCISCO CALIFORNIA 94102"
+// (US uppercases locality + administrativeArea)
 ```
 
 ## `clearInvalidValues`
 
 Returns a new address object with fields cleared that are invalid for the target country. Used internally for cascade clearing on country/state change.
+
+## Pure utilities
+
+When you already have a `CountryAddressConfig` (e.g. from `getMetadata`), you can
+skip the engine and call the underlying pure functions directly. These are the
+single source of truth the engine itself uses.
+
+```tsx
+import { validateAddressConfig, formatAddress, toPostalCodeRegex } from "@addresskit/core";
+
+const config = await provider.getMetadata("US");
+
+validateAddressConfig(config, address); // ValidationResult
+formatAddress(config, address);         // string (sync)
+toPostalCodeRegex(config.postalCodePattern!).test("94102"); // boolean
+```
