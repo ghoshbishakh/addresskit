@@ -7,7 +7,7 @@ import type { Address as AddressType } from "@addresskit/core";
 
 const provider = createLibaddressinputProvider();
 
-export default function BasicPage() {
+export default function LibaddressPage() {
   const [value, setValue] = useState<Partial<AddressType>>({});
   const [submitted, setSubmitted] = useState<Partial<AddressType> | null>(null);
 
@@ -19,7 +19,10 @@ export default function BasicPage() {
   return (
     <AddressProviderContext.Provider value={provider}>
       <div style={{ maxWidth: 480, margin: "0 auto" }}>
-        <h1>Basic Address Form</h1>
+        <h1>libaddressinput Provider</h1>
+        <p style={{ color: "#666", fontSize: 14 }}>
+          Uses Google libaddressinput metadata. Supports 7 countries (US, GB, CA, DE, JP, AU, BR) with accurate field labels, ordering, and postal code validation.
+        </p>
 
         <form onSubmit={handleSubmit}>
           <Address value={value} onChange={setValue} />

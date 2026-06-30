@@ -7,7 +7,10 @@ export default function Home() {
       <p>Select an example to view:</p>
       <ul style={{ lineHeight: 2 }}>
         <li>
-          <Link href="/basic">Basic Address Form</Link>
+          <Link href="/libaddress">libaddressinput Provider (7 countries)</Link>
+        </li>
+        <li>
+          <Link href="/dr5hn">dr5hn Provider (250 countries)</Link>
         </li>
         <li>
           <Link href="/headless">Headless API</Link>
