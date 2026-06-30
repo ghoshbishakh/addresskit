@@ -233,6 +233,64 @@
 
 ---
 
+## Phase 4: Developer Experience (DX)
+
+**Goal:** Make the public API predictable, consistent, and pleasant to use — fix
+correctness footguns, remove duplication, and smooth the React integration.
+Derived from an architecture review; see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+### 4.1 Correctness footguns (P0 — shipped)
+
+- [x] `engine.format()` loads metadata on demand (now async) — no longer silently returns `""` when the cache wasn't primed
+- [x] `format()` resolves `administrativeArea` code → display name (e.g. `CA` → `California`)
+- [x] Normalize postal-code regex (`toPostalCodeRegex`) — fix double-anchoring (`^^…$$`) and anchor alternations as a whole
+- [x] Remove dead `latinFormat` field from `CountryAddressConfig`
+
+### 4.2 Single source of truth (P1 — shipped)
+
+- [x] Extract pure `validateAddressConfig` / `formatAddress` into `@addresskit/core`
+- [x] `@addresskit/validation` delegates to `validateAddressConfig` (no duplicate rules)
+- [x] Export pure utilities from core (`validateAddressConfig`, `formatAddress`, `toPostalCodeRegex`, `resolveAdministrativeArea`)
+
+### 4.3 Cheap country list & name resolution (P1 — shipped)
+
+- [x] Generate a bundled `COUNTRIES` index (`{ code, name }`) in `@addresskit/data`
+- [x] `getCountries()` no longer loads all 256 metadata files; libaddressinput provider uses the index
+- [x] Add `getCountryName(code)` and `getStateName(country, code)` helpers
+- [x] Update generator script to emit `countries.ts`
+
+### 4.4 React ergonomics (P2)
+
+- [x] `useAddressEngine()` memoizes one engine per provider so the metadata cache survives across renders
+- [ ] Debounce `useAddressValidation` and stabilize its effect deps (avoid revalidating on every render)
+- [ ] Surface `isLoading` / `error` state from `<Address>` and the hooks (schema fetch + provider rejection)
+- [ ] Add an error boundary / fallback when a provider fails to load a country
+
+### 4.5 Theming & headless polish (P2)
+
+- [ ] Add `className` / `style` / `classNames` passthrough to `DefaultInput` / `DefaultSelect`
+- [ ] Provide an unstyled (truly headless) render mode / primitives
+- [ ] Document the component slot pattern for design-system integration
+
+### 4.6 Complete or remove the city contract (P2)
+
+- [ ] Implement city autocomplete end-to-end (`combobox` field type + `getCities`), or
+- [ ] Formally remove `combobox` / `getCities` from the public types until a data source exists
+
+### 4.7 Data quality (P2/P3)
+
+- [ ] Normalize country/subregion name casing (libaddressinput names are UPPER-CASE; dr5hn is title-case)
+- [ ] Decide a single canonical display casing and apply consistently across providers
+
+### 4.8 Tests & tooling (P2)
+
+- [x] Tests for postal-regex normalization, format state-name resolution, cold-cache `format()`, and the data name APIs
+- [ ] Fix `pnpm lint` scope (currently lints `dist`/generated files → tens of thousands of false errors)
+- [ ] Add `<Address>` behavior tests (country-switch cascade, debounced validation, loading states)
+- [ ] Add a typecheck (`tsc --noEmit`) step to CI for every package and example
+
+---
+
 ## Future / Backlog
 
 - [ ] Multiple address formats (shipping, billing, business)
