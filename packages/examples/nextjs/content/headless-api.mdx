@@ -1,94 +1,131 @@
-# Headless API
+# Headless Hooks
 
-Use the core engine directly without React components.
+Build fully custom address form interfaces without any pre-built markup using AddressKit headless hooks.
 
-## `createEngine`
+## `useAddressForm`
 
-Creates an engine instance from a provider. The engine caches metadata per country.
+The primary hook for managing form state, dynamic schemas, country cascading, and validation:
 
 ```tsx
-import { createEngine } from "@addresskit/core";
-import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import { useAddressForm } from "@addresskit/react";
 
-const provider = createLibaddressinputProvider();
-const engine = createEngine(provider);
+function CustomForm() {
+  const {
+    address,
+    fields,
+    errors,
+    countries,
+    isValid,
+    isValidating,
+    setCountry,
+    setFieldValue,
+    setAddress,
+    reset,
+  } = useAddressForm({
+    initialAddress: { country: "US" },
+    allowedCountries: ["US", "CA", "GB"],
+  });
+
+  return (
+    <form>
+      <div>
+        <label htmlFor="country">Country</label>
+        <select
+          id="country"
+          value={address.country ?? ""}
+          onChange={(e) => setCountry(e.target.value)}
+        >
+          {countries.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {fields.map((field) => (
+        <div key={field.id}>
+          <label htmlFor={field.id}>{field.label}</label>
+          <input
+            id={field.id}
+            value={address[field.id] ?? ""}
+            placeholder={field.placeholder}
+            onChange={(e) => setFieldValue(field.id, e.target.value)}
+          />
+          {errors[field.id] && <span role="alert">{errors[field.id]}</span>}
+        </div>
+      ))}
+    </form>
+  );
+}
 ```
 
-## `getSchema`
+## `useCountries`
 
-Returns the address schema for a country, including fields with labels, types, and validation rules.
+Fetch the list of supported countries with optional filtering:
 
 ```tsx
-const schema = await engine.getSchema("US");
-// {
-//   country: "US",
-//   fields: [
-//     { id: "line1", label: "Street address", required: true, type: "text" },
-//     { id: "line2", label: "Address line 2", required: false, type: "text" },
-//     { id: "locality", label: "City", required: true, type: "text" },
-//     { id: "administrativeArea", label: "State", required: true, type: "select", options: [...] },
-//     { id: "postalCode", label: "ZIP code", required: true, type: "text", validation: {...} },
-//   ],
-//   format: "%A%n%C, %S %Z"
-// }
+import { useCountries } from "@addresskit/react";
+
+function CountryList() {
+  const countries = useCountries(["US", "CA", "GB", "DE"]);
+
+  return (
+    <select>
+      {countries.map((c) => (
+        <option key={c.code} value={c.code}>
+          {c.name}
+        </option>
+      ))}
+    </select>
+  );
+}
 ```
 
-## `validate`
+## `useStates` and `useCities`
 
-Validates an address against its country schema. Returns structured per-field errors.
+Load subregions on demand:
 
 ```tsx
-const result = await engine.validate({
-  country: "US",
-  line1: "123 Main St",
-  locality: "San Francisco",
-  administrativeArea: "CA",
-  postalCode: "94102",
-});
-// { valid: true, errors: [] }
+import { useStates, useCities } from "@addresskit/react";
 
-const result = await engine.validate({
-  country: "US",
-  line1: "",
-});
-// { valid: false, errors: [{ field: "line1", message: "Street address is required" }] }
+function Subregions() {
+  const states = useStates("US");
+  const cities = useCities("US", "CA");
+
+  return (
+    <div>
+      <p>States in US: {states.length}</p>
+      <p>Cities in California: {cities.length}</p>
+    </div>
+  );
+}
 ```
 
-## `format`
+## `useAddressValidation`
 
-Formats an address string according to the country's format pattern. `format`
-is **async** — it loads the country metadata on demand, so you don't need to
-call `getSchema`/`validate` first. The `administrativeArea` **code is resolved
-to its display name** (e.g. `CA` → `California`).
+Validate address values in real time:
 
 ```tsx
-const formatted = await engine.format({
-  country: "US",
-  line1: "123 Main St",
-  locality: "San Francisco",
-  administrativeArea: "CA",
-  postalCode: "94102",
-});
-// "123 Main St\nSAN FRANCISCO CALIFORNIA 94102"
-// (US uppercases locality + administrativeArea)
+import { useAddressValidation } from "@addresskit/react";
+
+function ValidationBadge({ address }) {
+  const { valid, errors } = useAddressValidation(address);
+
+  if (valid) return <span>Address is valid</span>;
+  return <span>{errors.length} validation errors</span>;
+}
 ```
 
-## `clearInvalidValues`
+## `useAddressFormat`
 
-Returns a new address object with fields cleared that are invalid for the target country. Used internally for cascade clearing on country/state change.
-
-## Pure utilities
-
-When you already have a `CountryAddressConfig` (e.g. from `getMetadata`), you can
-skip the engine and call the underlying pure functions directly. These are the
-single source of truth the engine itself uses.
+Format an address into postal layout:
 
 ```tsx
-import { validateAddressConfig, formatAddress, toPostalCodeRegex } from "@addresskit/core";
+import { useAddressFormat } from "@addresskit/react";
 
-const config = await provider.getMetadata("US");
-
-validateAddressConfig(config, address); // ValidationResult
-formatAddress(config, address);         // string (sync)
-toPostalCodeRegex(config.postalCodePattern!).test("94102"); // boolean
+function AddressPreview({ address }) {
+  const formatted = useAddressFormat(address);
+  return <pre>{formatted}</pre>;
+}
 ```

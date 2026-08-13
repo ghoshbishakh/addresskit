@@ -1,0 +1,106 @@
+# Backend Validation
+
+AddressKit includes a standalone validation and normalization package (`@addresskit/validation`) designed for backend environments. It has zero browser or DOM dependencies and works across Node.js, Bun, Deno, and Cloudflare Workers.
+
+## Installation
+
+```bash
+npm install @addresskit/validation @addresskit/core
+```
+
+## `validateAddress`
+
+Validates required fields, postal code regex patterns, and valid subregions (state/province) according to country rules:
+
+```ts
+import { validateAddress } from "@addresskit/validation";
+
+const result = await validateAddress({
+  country: "US",
+  line1: "1600 Amphitheatre Pkwy",
+  locality: "Mountain View",
+  administrativeArea: "CA",
+  postalCode: "94043",
+});
+
+if (result.valid) {
+  console.log("Address is valid");
+} else {
+  for (const error of result.errors) {
+    console.error(`Field ${error.field}: ${error.message}`);
+  }
+}
+```
+
+## `normalizeAddress`
+
+Sanitizes address inputs:
+- Trims whitespace across all fields.
+- Converts country code to uppercase ISO 3166-1 alpha-2.
+- Converts state code to uppercase or canonical ISO code where applicable.
+- Applies country-specific uppercase formatting rules.
+
+```ts
+import { normalizeAddress } from "@addresskit/validation";
+
+const normalized = await normalizeAddress({
+  country: "us",
+  line1: "  1600 Amphitheatre Pkwy  ",
+  locality: "  Mountain View  ",
+  administrativeArea: "California",
+  postalCode: " 94043 ",
+});
+
+// Output:
+// {
+//   country: "US",
+//   line1: "1600 Amphitheatre Pkwy",
+//   locality: "Mountain View",
+//   administrativeArea: "CA",
+//   postalCode: "94043"
+// }
+```
+
+## `formatAddress`
+
+Formats address objects into single-line or multi-line strings per country layout standards:
+
+```ts
+import { formatAddress } from "@addresskit/validation";
+
+// Multi-line postal label
+const multiLine = await formatAddress(address);
+
+// Single-line display string with country name
+const singleLine = await formatAddress(address, {
+  singleLine: true,
+  includeCountry: true,
+});
+```
+
+## Custom Validation Rules
+
+Add custom validation rules (e.g. PO Box restrictions or external database checks):
+
+```ts
+import { validateAddress } from "@addresskit/validation";
+
+const result = await validateAddress(address, {
+  customValidators: [
+    (addr) => {
+      if (addr.line1.toLowerCase().includes("po box")) {
+        return [{ field: "line1", message: "PO Box delivery is not available" }];
+      }
+      return [];
+    },
+    async (addr) => {
+      // Async database or API check
+      const blocked = await isDeliveryBlocked(addr.postalCode);
+      if (blocked) {
+        return [{ field: "postalCode", message: "Delivery unavailable to this postal code" }];
+      }
+      return [];
+    },
+  ],
+});
+```

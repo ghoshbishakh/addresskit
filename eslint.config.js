@@ -1,6 +1,15 @@
 export default [
   {
-    ignores: ["**/dist/**", "**/node_modules/**"],
+    ignores: [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/.turbo/**",
+      "**/*.json",
+      "**/packages/data/src/data/**",
+      "**/packages/providers/dr5hn/src/data/states/**",
+    ],
   },
   {
     rules: {

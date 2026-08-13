@@ -1,13 +1,13 @@
-export type FieldId = "line1" | "line2" | "locality" | "administrativeArea" | "postalCode";
+type FieldId = "line1" | "line2" | "locality" | "administrativeArea" | "postalCode";
 
-export type FieldType = "text" | "select" | "combobox";
+type FieldType = "text" | "select" | "combobox";
 
-export interface FieldOption {
+interface FieldOption {
   value: string;
   label: string;
 }
 
-export interface Field {
+interface Field {
   id: FieldId;
   type: FieldType;
   label: string;
@@ -20,13 +20,13 @@ export interface Field {
   };
 }
 
-export interface AddressSchema {
+interface AddressSchema {
   fields: Field[];
   country: string;
   format: string;
 }
 
-export interface Address {
+interface Address {
   country: string;
   line1: string;
   line2?: string;
@@ -35,17 +35,44 @@ export interface Address {
   postalCode?: string;
 }
 
-export interface ValidationError {
-  field: FieldId;
+interface ValidationError {
+  field: FieldId | "country";
   message: string;
 }
 
-export interface ValidationResult {
+interface ValidationResult {
   valid: boolean;
   errors: ValidationError[];
 }
 
-export interface CountryAddressConfig {
+type CustomValidator = (
+  address: Address,
+  config?: CountryAddressConfig,
+) => ValidationError[] | Promise<ValidationError[]>;
+
+interface ValidationOptions {
+  customValidators?: CustomValidator[];
+  allowUnknownSubregions?: boolean;
+}
+
+interface FormatOptions {
+  singleLine?: boolean;
+  includeCountry?: boolean;
+  countryName?: string;
+}
+
+interface NormalizeOptions {
+  trim?: boolean;
+  uppercaseFields?: boolean;
+  canonicalizeSubregion?: boolean;
+}
+
+interface PostalLookupResult {
+  locality?: string;
+  administrativeArea?: string;
+}
+
+interface CountryAddressConfig {
   code: string;
   name?: string;
   format: string;
@@ -59,9 +86,28 @@ export interface CountryAddressConfig {
   subRegions?: { name: string; code: string }[];
 }
 
-export interface AddressProvider {
+interface AddressProvider {
   getCountries(): Promise<{ code: string; name: string }[]>;
   getStates(country: string): Promise<{ code: string; name: string }[]>;
   getCities(country: string, state: string): Promise<string[]>;
   getMetadata(country: string): Promise<CountryAddressConfig>;
+  lookupPostalCode?(postalCode: string, country: string): Promise<PostalLookupResult | null>;
 }
+
+export type {
+  FieldId,
+  FieldType,
+  FieldOption,
+  Field,
+  AddressSchema,
+  Address,
+  ValidationError,
+  ValidationResult,
+  CustomValidator,
+  ValidationOptions,
+  FormatOptions,
+  NormalizeOptions,
+  PostalLookupResult,
+  CountryAddressConfig,
+  AddressProvider,
+};

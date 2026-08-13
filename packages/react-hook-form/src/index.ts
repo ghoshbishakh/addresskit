@@ -1,1 +1,2 @@
-export { AddressController } from "./controller";
+export { AddressController, addressValidationRule } from "./controller";
+export type { AddressControllerProps } from "./controller";

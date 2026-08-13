@@ -1,0 +1,62 @@
+# Compound Primitives
+
+AddressKit provides compound primitives for granular UI control. Use compound primitives when integrating into custom design systems (like Tailwind CSS, shadcn/ui, or Mantine) without writing custom wrappers.
+
+## Available Primitives
+
+- `<Address.Root>` (or `<AddressRoot>`): Provides form context, state updates, validation, and country cascading.
+- `<Address.Country>` (or `<AddressCountry>`): Renders the country selection dropdown.
+- `<Address.Fields>` (or `<AddressFields>`): Iterates through dynamic country fields using a render function.
+- `<Address.Field>` (or `<AddressField>`): Scopes context to a specific field.
+- `<Address.Label>` (or `<AddressLabel>`): Renders the dynamic field label and required indicator.
+- `<Address.Input>` (or `<AddressInput>`): Renders an unstyled text input connected to field state and validation.
+- `<Address.Select>` (or `<AddressSelect>`): Renders an unstyled select dropdown for subregion options.
+- `<Address.Error>` (or `<AddressError>`): Renders the field validation error message.
+
+## Example
+
+```tsx
+import { useState } from "react";
+import { Address } from "@addresskit/react";
+import type { Address as AddressType } from "@addresskit/core";
+
+export function CompoundAddressForm() {
+  const [address, setAddress] = useState<Partial<AddressType>>({
+    country: "US",
+  });
+
+  return (
+    <Address.Root
+      value={address}
+      onChange={setAddress}
+      className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-sm border space-y-4"
+    >
+      <Address.Country
+        label="Select Destination Country"
+        className="w-full border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
+      />
+
+      <Address.Fields>
+        {(field) => (
+          <Address.Field key={field.id} field={field} className="space-y-1">
+            <Address.Label className="block text-sm font-medium text-gray-700" />
+            {field.type === "select" ? (
+              <Address.Select className="w-full border rounded-md px-3 py-2 text-sm bg-white" />
+            ) : (
+              <Address.Input className="w-full border rounded-md px-3 py-2 text-sm" />
+            )}
+            <Address.Error className="text-xs text-red-600" />
+          </Address.Field>
+        )}
+      </Address.Fields>
+    </Address.Root>
+  );
+}
+```
+
+## Primitive Hooks
+
+For deep customization inside custom primitive components, consume the underlying primitive contexts:
+
+- `useAddressFormContext()`: Access `address`, `fields`, `errors`, `countries`, `setFieldValue`, `setCountry`.
+- `useAddressFieldContext()`: Access current `field`, `value`, `error`.

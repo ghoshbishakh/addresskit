@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@addresskit/core": "workspace:*",
-    "@addresskit/react": "workspace:*"
+    "@addresskit/react": "workspace:*",
+    "@addresskit/validation": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18",

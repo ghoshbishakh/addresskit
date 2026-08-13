@@ -1,5 +1,5 @@
 {
-  "name": "@addresskit/validation",
+  "name": "@addresskit/zod",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -20,7 +20,13 @@
   },
   "dependencies": {
     "@addresskit/core": "workspace:*",
-    "@addresskit/data": "workspace:*"
+    "@addresskit/validation": "workspace:*"
+  },
+  "peerDependencies": {
+    "zod": "^3.0.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "zod": "^3.24.2"
   },
   "engines": {
     "node": ">=18"

@@ -1,61 +1,95 @@
 # Components
 
-Reference for all AddressKit React components.
+AddressKit provides pre-built React components to render country-specific address forms.
 
 ## `<Address>`
 
-The main controlled address form component.
+The main controlled address component. Renders dynamic fields, handles country cascading, and manages debounced validation.
 
 ### Props
 
 | Prop | Type | Description |
 | ---- | ---- | ----------- |
-| `value` | `Partial<Address>` | Current address values |
-| `onChange` | `(value: Partial<Address>) => void` | Called when any field changes |
-| `provider` | `AddressProvider` | Provider instance (optional if using context) |
-| `allowedCountries` | `string[]` | Restrict country dropdown to these codes |
-| `components` | `FieldComponents` | Override default input/select components |
+| `value` | `Partial<Address>` | Current address values. |
+| `onChange` | `(value: Partial<Address>) => void` | Callback triggered on every field change. |
+| `allowedCountries` | `string[]` | Restrict country selection dropdown to specific ISO codes. |
+| `provider` | `AddressProvider` | Explicit data provider. Defaults to bundled Google libaddressinput data. |
+| `disabled` | `boolean` | Disables all input and select fields in the form. |
+| `readOnly` | `boolean` | Sets all input fields to read-only. |
+| `showErrors` | `boolean` | Toggle display of inline validation error messages. Default is `true`. |
+| `onValidationChange` | `(result: ValidationResult) => void` | Callback triggered whenever validation status updates. |
+| `className` | `string` | Custom CSS class applied to the root form container. |
+| `style` | `CSSProperties` | Inline styles applied to the root form container. |
+| `classNames` | `AddressClassNames` | Fine-grained CSS class overrides for sub-elements (`root`, `field`, `label`, `input`, `select`, `error`, `required`). |
+| `styles` | `AddressStyles` | Fine-grained inline styles for sub-elements. |
+| `fieldOverrides` | `Partial<Record<FieldId, Partial<Field>>>` | Custom overrides for specific field labels, placeholders, or required status. |
+| `components` | `FieldComponents` | Custom component replacements for `Input` and `Select`. |
 
 ### Example
 
 ```tsx
+import { useState } from "react";
 import { Address } from "@addresskit/react";
+import type { Address as AddressType } from "@addresskit/core";
 
-<Address
-  value={value}
-  onChange={setValue}
-  allowedCountries={["US", "GB", "CA"]}
-/>
+export function ShippingForm() {
+  const [address, setAddress] = useState<Partial<AddressType>>({
+    country: "US",
+  });
+
+  return (
+    <Address
+      value={address}
+      onChange={setAddress}
+      allowedCountries={["US", "CA", "GB", "DE"]}
+      classNames={{
+        root: "space-y-4",
+        input: "w-full border rounded px-3 py-2 text-sm",
+        select: "w-full border rounded px-3 py-2 text-sm bg-white",
+        label: "block text-sm font-medium mb-1",
+        error: "text-red-500 text-xs mt-1",
+      }}
+      onValidationChange={(result) => {
+        console.log("Validation status:", result.valid);
+      }}
+    />
+  );
+}
 ```
 
-## `<AddressController>`
+## Custom Input and Select Slots
 
-React Hook Form integration wrapper.
-
-```tsx
-import { AddressController } from "@addresskit/react-hook-form";
-import { useForm } from "react-hook-form";
-
-const { control } = useForm();
-
-<AddressController
-  name="address"
-  control={control}
-  rules={{ required: "Address is required" }}
-/>
-```
-
-## `<AddressProviderContext>`
-
-React context for providing a provider instance to all descendent Address components.
+Pass custom components via the `components` prop to render UI library components (like shadcn/ui or Radix UI):
 
 ```tsx
-import { AddressProviderContext, Address } from "@addresskit/react";
-import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
+import { Address } from "@addresskit/react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
-const provider = createLibaddressinputProvider();
+export function CustomAddressForm() {
+  const [value, setValue] = useState({ country: "US" });
 
-<AddressProviderContext.Provider value={provider}>
-  <Address value={value} onChange={setValue} />
-</AddressProviderContext.Provider>
+  return (
+    <Address
+      value={value}
+      onChange={setValue}
+      components={{
+        Input: ({ field, value, error, onChange, disabled, readOnly }) => (
+          <div className="space-y-1">
+            <label className="text-sm font-medium">{field.label}</label>
+            <Input
+              value={value}
+              disabled={disabled}
+              readOnly={readOnly}
+              placeholder={field.placeholder}
+              onChange={(e) => onChange(field.id, e.target.value)}
+              className={error ? "border-red-500" : ""}
+            />
+            {error && <span className="text-xs text-red-500">{error}</span>}
+          </div>
+        ),
+      }}
+    />
+  );
+}
 ```

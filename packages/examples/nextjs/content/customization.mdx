@@ -1,70 +1,95 @@
-# Customization
+# Styling & Customization
 
-Override default inputs, labels, and styling.
+AddressKit offers multiple levels of styling and customization: CSS class mappings, inline styles, component slot overrides, and compound primitives.
 
-## Custom Field Components
+## Class Names & Theme Object
 
-Pass custom input and select components via the `components` prop.
+Pass a `classNames` object to style all sub-components with your CSS framework (such as Tailwind CSS):
 
 ```tsx
 import { Address } from "@addresskit/react";
-import type { FieldComponents } from "@addresskit/react";
 
-const components: FieldComponents = {
-  Input: ({ field, value, onChange, error }) => (
-    <div>
-      <label>{field.label}</label>
-      <input
-        value={value ?? ""}
-        onChange={(e) => onChange(field.id, e.target.value)}
-        className="border rounded px-3 py-2 w-full"
-      />
-      {error && <p className="text-red-500 text-sm">{error}</p>}
-    </div>
-  ),
-  Select: ({ field, value, onChange }) => (
-    <select
-      value={value ?? ""}
-      onChange={(e) => onChange(field.id, e.target.value)}
-      className="border rounded px-3 py-2 w-full"
-    >
-      <option value="">Select...</option>
-      {field.options?.map((opt) => (
-        <option key={opt.value} value={opt.value}>{opt.label}</option>
-      ))}
-    </select>
-  ),
-};
+export function StyledAddress() {
+  return (
+    <Address
+      value={address}
+      onChange={setAddress}
+      classNames={{
+        root: "space-y-4 max-w-lg p-6 bg-white rounded-xl shadow border",
+        field: "flex flex-col gap-1",
+        label: "text-sm font-semibold text-gray-800",
+        required: "text-red-500 font-bold ml-1",
+        input: "w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
+        select: "w-full px-3 py-2 border rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500",
+        error: "text-xs text-red-600 font-medium",
+      }}
+    />
+  );
+}
+```
 
+## Inline Styles Object
+
+Pass a `styles` object for fine-grained CSS-in-JS or inline styling:
+
+```tsx
 <Address
-  value={value}
-  onChange={setValue}
-  components={components}
+  value={address}
+  onChange={setAddress}
+  styles={{
+    root: { maxWidth: 480, margin: "0 auto" },
+    label: { fontSize: 13, textTransform: "uppercase", letterSpacing: "0.05em" },
+    input: { borderColor: "#e2e8f0", borderRadius: 6 },
+    error: { color: "#e53e3e", fontSize: 12 },
+  }}
 />
 ```
 
-## Custom Labels
+## Field Overrides
 
-Field labels come from the provider metadata. To override, use a custom provider that returns modified `fieldLabels` in `getMetadata()`.
+Override labels, placeholders, or requirements for specific fields without creating a custom provider:
 
-## CSS Styling
+```tsx
+<Address
+  value={address}
+  onChange={setAddress}
+  fieldOverrides={{
+    line1: {
+      label: "Street & House Number",
+      placeholder: "e.g. 123 Main St, Apt 4B",
+    },
+    line2: {
+      placeholder: "Building, suite, unit (optional)",
+    },
+  }}
+/>
+```
 
-Default components use semantic class names. Style with CSS or Tailwind.
+## Custom Component Replacement
 
-```css
-/* Target default input fields */
-input, select {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px 12px;
-  width: 100%;
-  box-sizing: border-box;
-}
+Provide custom Input and Select components to render design system elements (such as shadcn/ui):
 
-/* Target field labels */
-label {
-  font-weight: 500;
-  display: block;
-  margin-bottom: 4px;
-}
+```tsx
+import { Address } from "@addresskit/react";
+import { Input } from "@/components/ui/input";
+
+<Address
+  value={address}
+  onChange={setAddress}
+  components={{
+    Input: ({ field, value, error, onChange, disabled, readOnly }) => (
+      <div className="space-y-1">
+        <label className="text-sm font-medium">{field.label}</label>
+        <Input
+          value={value}
+          disabled={disabled}
+          readOnly={readOnly}
+          placeholder={field.placeholder}
+          onChange={(e) => onChange(field.id, e.target.value)}
+        />
+        {error && <p className="text-xs text-destructive">{error}</p>}
+      </div>
+    ),
+  }}
+/>
 ```

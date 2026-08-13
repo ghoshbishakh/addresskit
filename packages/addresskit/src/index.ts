@@ -1,13 +1,13 @@
-export { createEngine } from "./engine";
-export { buildSchema } from "./schema";
 export {
+  createEngine,
+  buildSchema,
   validateAddressConfig,
   validateAddressConfigAsync,
   toPostalCodeRegex,
-} from "./validate";
-export { formatAddress, resolveAdministrativeArea } from "./format";
-export { normalizeAddress } from "./normalize";
-export type { Engine } from "./engine";
+  formatAddress,
+  resolveAdministrativeArea,
+  normalizeAddress,
+} from "@addresskit/core";
 export type {
   Address,
   AddressProvider,
@@ -24,4 +24,6 @@ export type {
   FormatOptions,
   NormalizeOptions,
   PostalLookupResult,
-} from "./types";
+  Engine,
+} from "@addresskit/core";
+export { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";

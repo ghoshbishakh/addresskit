@@ -5,5 +5,5 @@ export {
   normalizeAddress,
   formatAddress,
   lookupPostalCode,
-} from "./validator";
-export type { Validator, ValidatorConfig } from "./validator";
+} from "@addresskit/validation";
+export type { Validator, ValidatorConfig } from "@addresskit/validation";

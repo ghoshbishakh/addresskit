@@ -1,6 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
-import { useAddressProvider, AddressProviderContext } from "../context";
+import {
+  useAddressProvider,
+  AddressProviderContext,
+  defaultProvider,
+} from "../context";
 import type { AddressProvider } from "@addresskit/core";
 
 const mockProvider: AddressProvider = {
@@ -18,8 +22,8 @@ const mockProvider: AddressProvider = {
   },
 };
 
-describe("useAddressProvider", () => {
-  it("returns provider from context", () => {
+describe("useAddressProvider with context", () => {
+  it("returns custom provider from context", () => {
     const { result } = renderHook(() => useAddressProvider(), {
       wrapper: ({ children }) => (
         <AddressProviderContext.Provider value={mockProvider}>
@@ -29,10 +33,11 @@ describe("useAddressProvider", () => {
     });
     expect(result.current).toBe(mockProvider);
   });
+});
 
-  it("throws without provider", () => {
-    expect(() => {
-      renderHook(() => useAddressProvider());
-    }).toThrow("useAddressProvider must be used within");
+describe("useAddressProvider without context", () => {
+  it("returns default bundled provider when context is missing", () => {
+    const { result } = renderHook(() => useAddressProvider());
+    expect(result.current).toBe(defaultProvider);
   });
 });

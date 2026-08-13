@@ -1,0 +1,75 @@
+# Zod Integration
+
+AddressKit provides official Zod schema integration via `@addresskit/zod`. This enables validating addresses in TypeScript backends (tRPC, Next.js Server Actions, Hono, Fastify, Express) in a single line.
+
+## Installation
+
+```bash
+npm install @addresskit/zod zod
+```
+
+## Usage
+
+```ts
+import { z } from "zod";
+import { addressZodSchema } from "@addresskit/zod";
+
+export const CreateOrderSchema = z.object({
+  customerId: z.string().uuid(),
+  shippingAddress: addressZodSchema(),
+  billingAddress: addressZodSchema().optional(),
+});
+```
+
+When parsing an incoming payload, `addressZodSchema` automatically verifies:
+- Country is provided and exists in ISO 3166-1.
+- Required fields for that specific country are populated.
+- Postal code matches the country's regex pattern.
+- State or province is valid for countries with defined subregions.
+
+## Next.js Server Action Example
+
+```ts
+"use server";
+
+import { z } from "zod";
+import { addressZodSchema } from "@addresskit/zod";
+
+const formSchema = z.object({
+  name: z.string().min(1),
+  address: addressZodSchema(),
+});
+
+export async function submitOrder(formData: unknown) {
+  const parsed = await formSchema.safeParseAsync(formData);
+
+  if (!parsed.success) {
+    return { success: false, errors: parsed.error.flatten() };
+  }
+
+  // parsed.data.address is fully validated
+  return { success: true, data: parsed.data };
+}
+```
+
+## Custom Validation Options
+
+Pass validation options directly to `addressZodSchema`:
+
+```ts
+import { addressZodSchema } from "@addresskit/zod";
+
+const strictAddress = addressZodSchema({
+  validationOptions: {
+    allowUnknownSubregions: false,
+    customValidators: [
+      (addr) => {
+        if (addr.line1.includes("PO Box")) {
+          return [{ field: "line1", message: "Cannot ship to PO Box" }];
+        }
+        return [];
+      },
+    ],
+  },
+});
+```

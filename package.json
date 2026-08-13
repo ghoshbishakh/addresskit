@@ -1,5 +1,6 @@
 {
   "name": "addresskit",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "pnpm -r build",

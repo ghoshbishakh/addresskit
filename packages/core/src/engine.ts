@@ -1,9 +1,20 @@
-import type { AddressProvider, Address, AddressSchema, ValidationResult, CountryAddressConfig } from "./types";
+import type {
+  AddressProvider,
+  Address,
+  AddressSchema,
+  ValidationResult,
+  ValidationOptions,
+  FormatOptions,
+  NormalizeOptions,
+  PostalLookupResult,
+  CountryAddressConfig,
+} from "./types";
 import { buildSchema } from "./schema";
-import { validateAddressConfig } from "./validate";
+import { validateAddressConfigAsync } from "./validate";
 import { formatAddress } from "./format";
+import { normalizeAddress } from "./normalize";
 
-export function createEngine(provider: AddressProvider) {
+function createEngine(provider: AddressProvider) {
   const cache = new Map<string, CountryAddressConfig>();
 
   async function loadMetadata(country: string): Promise<CountryAddressConfig> {
@@ -18,17 +29,38 @@ export function createEngine(provider: AddressProvider) {
     return buildSchema(await loadMetadata(country));
   }
 
-  async function validate(address: Address): Promise<ValidationResult> {
-    return validateAddressConfig(await loadMetadata(address.country), address);
+  async function validate(
+    address: Address,
+    options?: ValidationOptions,
+  ): Promise<ValidationResult> {
+    const metadata = await loadMetadata(address.country);
+    return validateAddressConfigAsync(metadata, address, options);
   }
 
-  /**
-   * Format an address into a postal string. Loads the country metadata on
-   * demand, so callers no longer need to prime the cache via `validate`/
-   * `getSchema` first.
-   */
-  async function format(address: Address): Promise<string> {
-    return formatAddress(await loadMetadata(address.country), address);
+  async function format(
+    address: Address,
+    options?: FormatOptions,
+  ): Promise<string> {
+    const metadata = await loadMetadata(address.country);
+    return formatAddress(metadata, address, options);
+  }
+
+  async function normalize(
+    address: Address,
+    options?: NormalizeOptions,
+  ): Promise<Address> {
+    const metadata = await loadMetadata(address.country);
+    return normalizeAddress(metadata, address, options);
+  }
+
+  async function lookupPostalCode(
+    postalCode: string,
+    country: string,
+  ): Promise<PostalLookupResult | null> {
+    if (provider.lookupPostalCode) {
+      return provider.lookupPostalCode(postalCode, country);
+    }
+    return null;
   }
 
   function clearInvalidValues(
@@ -57,13 +89,28 @@ export function createEngine(provider: AddressProvider) {
     };
   }
 
+  function clearCity(address: Address): Partial<Address> {
+    return {
+      country: address.country,
+      line1: address.line1,
+      line2: address.line2,
+      administrativeArea: address.administrativeArea,
+    };
+  }
+
   return {
     getSchema,
     validate,
     format,
+    normalize,
+    lookupPostalCode,
     clearInvalidValues,
     clearState,
+    clearCity,
   };
 }
 
-export type Engine = ReturnType<typeof createEngine>;
+type Engine = ReturnType<typeof createEngine>;
+
+export { createEngine };
+export type { Engine };

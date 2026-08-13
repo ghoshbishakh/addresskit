@@ -1,28 +1,38 @@
-import type { Address, CountryAddressConfig, ValidationError, ValidationResult } from "./types";
+import type {
+  Address,
+  CountryAddressConfig,
+  ValidationError,
+  ValidationResult,
+  ValidationOptions,
+} from "./types";
 
-/**
- * Normalize a stored postal-code pattern into a single, fully anchored RegExp.
- *
- * Source data is inconsistent: some patterns already include `^…$` anchors and
- * some do not. We strip any existing anchors and wrap the body in a single
- * `^(?:…)$` so matching is consistent regardless of the input form (and so an
- * alternation like `a|b` is anchored as a whole, not just its first branch).
- */
-export function toPostalCodeRegex(pattern: string): RegExp {
+function toPostalCodeRegex(pattern: string): RegExp {
   const body = pattern.replace(/^\^+/, "").replace(/\$+$/, "");
   return new RegExp(`^(?:${body})$`);
 }
 
-/**
- * Validate an address against a resolved country config. Pure and synchronous:
- * the engine and the `@addresskit/validation` package both delegate here so
- * there is a single source of truth for validation rules.
- */
-export function validateAddressConfig(
+function matchSubRegion(
+  subRegions: { name: string; code: string }[],
+  value: string,
+): boolean {
+  const normalized = value.trim().toLowerCase();
+  return subRegions.some(
+    (r) =>
+      r.code.toLowerCase() === normalized ||
+      r.name.toLowerCase() === normalized,
+  );
+}
+
+function validateAddressConfig(
   config: CountryAddressConfig,
   address: Address,
+  options?: ValidationOptions,
 ): ValidationResult {
   const errors: ValidationError[] = [];
+
+  if (!address.country || address.country.trim().length === 0) {
+    errors.push({ field: "country", message: "Country is required" });
+  }
 
   for (const field of config.requiredFields) {
     const value = address[field as keyof Address];
@@ -33,17 +43,23 @@ export function validateAddressConfig(
   }
 
   if (address.postalCode && config.postalCodePattern) {
-    if (!toPostalCodeRegex(config.postalCodePattern).test(address.postalCode)) {
+    const trimmedPostal = address.postalCode.trim();
+    if (!toPostalCodeRegex(config.postalCodePattern).test(trimmedPostal)) {
+      const label = config.fieldLabels.postalCode ?? "postal code";
       errors.push({
         field: "postalCode",
-        message: `Invalid ${config.fieldLabels.postalCode ?? "postal code"} format`,
+        message: `Invalid ${label} format`,
       });
     }
   }
 
-  if (address.administrativeArea && config.subRegions) {
-    const valid = config.subRegions.some((r) => r.code === address.administrativeArea);
-    if (!valid) {
+  if (
+    address.administrativeArea &&
+    config.subRegions &&
+    config.subRegions.length > 0 &&
+    !options?.allowUnknownSubregions
+  ) {
+    if (!matchSubRegion(config.subRegions, address.administrativeArea)) {
       errors.push({
         field: "administrativeArea",
         message: `Invalid ${config.administrativeAreaType}`,
@@ -51,5 +67,43 @@ export function validateAddressConfig(
     }
   }
 
+  if (options?.customValidators) {
+    for (const validator of options.customValidators) {
+      const result = validator(address, config);
+      if (Array.isArray(result)) {
+        errors.push(...result);
+      }
+    }
+  }
+
   return { valid: errors.length === 0, errors };
 }
+
+async function validateAddressConfigAsync(
+  config: CountryAddressConfig,
+  address: Address,
+  options?: ValidationOptions,
+): Promise<ValidationResult> {
+  const syncResult = validateAddressConfig(config, address, options);
+  const errors = [...syncResult.errors];
+
+  if (options?.customValidators) {
+    for (const validator of options.customValidators) {
+      const result = validator(address, config);
+      if (result instanceof Promise) {
+        const asyncErrors = await result;
+        if (Array.isArray(asyncErrors)) {
+          errors.push(...asyncErrors);
+        }
+      }
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+export {
+  toPostalCodeRegex,
+  validateAddressConfig,
+  validateAddressConfigAsync,
+};
