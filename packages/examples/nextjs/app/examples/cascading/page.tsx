@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Link from "next/link";
 import { createEngine } from "@addresskit/core";
 import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
 import { AddressProviderContext, Address } from "@addresskit/react";
@@ -8,7 +9,7 @@ import type { Address as AddressType } from "@addresskit/core";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
-import { RotateCcw, ArrowRight } from "lucide-react";
+import { RotateCcw, ArrowRight, ChevronLeft, Workflow } from "lucide-react";
 
 const provider = createLibaddressinputProvider();
 const engine = createEngine(provider);
@@ -47,7 +48,9 @@ const PRESETS: { label: string; address: Partial<AddressType> }[] = [
 
 export default function CascadingPage() {
   const [value, setValue] = useState<Partial<AddressType>>(PRESETS[0]!.address);
-  const [log, setLog] = useState<string[]>([]);
+  const [log, setLog] = useState<string[]>([
+    "Initialized with US (California) address.",
+  ]);
   const prevCountryRef = useRef<string | null>(value.country ?? null);
 
   function handleCountryPreset(preset: typeof PRESETS[0]) {
@@ -61,29 +64,45 @@ export default function CascadingPage() {
 
     setValue({ ...cleaned, ...preset.address });
     setLog((prev) => [
-      `Loaded preset: ${preset.label} (cleared invalid fields for ${oldCountry ?? "none"} -> ${newCountry})`,
-      ...prev.slice(0, 5),
+      `Preset loaded: ${preset.label}. Cleared invalid subregions for ${oldCountry ?? "none"} -> ${newCountry}.`,
+      ...prev.slice(0, 6),
     ]);
   }
 
   function handleReset() {
     setValue({ country: "US" });
-    setLog(["Reset form to default US state."]);
+    setLog(["Reset form to default empty state."]);
   }
 
   return (
-    <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Cascade Clear</h1>
-        <p className="text-muted-foreground">
-          Switching countries automatically preserves valid street lines while clearing invalid states, provinces, and postal codes.
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+      <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
+        <Link href="/examples" className="hover:text-foreground inline-flex items-center gap-1">
+          <ChevronLeft className="h-3.5 w-3.5" /> Back to Examples
+        </Link>
+        <span>/</span>
+        <span className="text-foreground font-medium">Cascade Clear</span>
+      </div>
+
+      <div className="mb-8">
+        <div className="flex items-center gap-2 mb-2">
+          <Badge variant="secondary" className="gap-1 text-xs">
+            <Workflow className="h-3 w-3" /> Form Engine
+          </Badge>
+          <Badge variant="outline" className="text-xs">Cascading Clears</Badge>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          Cascade Clearing Behavior
+        </h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-3xl">
+          AddressKit protects data integrity by automatically preserving valid street lines while resetting incompatible states, provinces, and postal codes upon country change.
         </p>
       </div>
 
       <div className="mb-6">
-        <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-          Test Presets (Click to switch and test cascading)
-        </label>
+        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-2">
+          Test Presets (Click to switch countries and observe cascading):
+        </span>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((preset) => (
             <Button
@@ -91,73 +110,82 @@ export default function CascadingPage() {
               type="button"
               variant={value.country === preset.address.country ? "default" : "outline"}
               size="sm"
+              className="text-xs h-8"
               onClick={() => handleCountryPreset(preset)}
             >
               {preset.label}
             </Button>
           ))}
-          <Button type="button" variant="ghost" size="sm" onClick={handleReset}>
+          <Button type="button" variant="ghost" size="sm" className="text-xs h-8" onClick={handleReset}>
             <RotateCcw className="h-3.5 w-3.5 mr-1" /> Reset
           </Button>
         </div>
       </div>
 
-      <AddressProviderContext.Provider value={provider}>
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Interactive Cascade Form</CardTitle>
-                <CardDescription>Change country in the dropdown below to observe field reset rules.</CardDescription>
-              </div>
-              <Badge variant="secondary">{value.country ?? "No country"}</Badge>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <Address
-              value={value}
-              onChange={(updated) => {
-                if (updated.country !== value.country) {
-                  setLog((prev) => [
-                    `Country changed: ${value.country ?? "None"} -> ${updated.country}. Cascaded invalid values.`,
-                    ...prev.slice(0, 5),
-                  ]);
-                }
-                setValue(updated);
-              }}
-            />
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-7">
+          <AddressProviderContext.Provider value={provider}>
+            <Card className="border-border/80">
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">Interactive Address Form</CardTitle>
+                  <Badge variant="outline" className="font-mono text-xs">{value.country ?? "No country"}</Badge>
+                </div>
+                <CardDescription className="text-xs">
+                  Changing country resets invalid state selections and regex-dependent postal values.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Address
+                  value={value}
+                  onChange={(updated) => {
+                    if (updated.country !== value.country) {
+                      setLog((prev) => [
+                        `Country changed: ${value.country ?? "None"} -> ${updated.country}. Ran clearInvalidValues().`,
+                        ...prev.slice(0, 6),
+                      ]);
+                    }
+                    setValue(updated);
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </AddressProviderContext.Provider>
+        </div>
 
-        {log.length > 0 && (
-          <Card className="mt-4">
-            <CardHeader className="py-3">
-              <CardTitle className="text-sm font-medium">Cascade Event Log</CardTitle>
+        <div className="lg:col-span-5 space-y-5">
+          <Card className="border-border/80">
+            <CardHeader className="py-3 px-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Cascade Event Log
+              </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 pb-3">
-              <ul className="text-xs space-y-1 font-mono text-muted-foreground">
+            <CardContent className="px-4 pb-4">
+              <ul className="text-xs space-y-2 font-mono text-muted-foreground">
                 {log.map((entry, idx) => (
-                  <li key={idx} className="flex items-center gap-1.5">
-                    <ArrowRight className="h-3 w-3 text-primary shrink-0" />
+                  <li key={idx} className="flex items-start gap-1.5 leading-snug">
+                    <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
                     <span>{entry}</span>
                   </li>
                 ))}
               </ul>
             </CardContent>
           </Card>
-        )}
 
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle>Current State Values</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="text-xs bg-muted p-4 rounded-lg overflow-x-auto font-mono border border-input">
-              {JSON.stringify(value, null, 2)}
-            </pre>
-          </CardContent>
-        </Card>
-      </AddressProviderContext.Provider>
+          <Card className="border-border/80">
+            <CardHeader className="py-3 px-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Current State Payload
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <pre className="font-mono text-xs text-muted-foreground p-3.5 rounded-lg bg-muted/50 border border-input overflow-x-auto max-h-56 overflow-y-auto">
+                {JSON.stringify(value, null, 2)}
+              </pre>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

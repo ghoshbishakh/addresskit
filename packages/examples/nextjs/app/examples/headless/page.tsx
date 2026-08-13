@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { createEngine } from "@addresskit/core";
 import { createLibaddressinputProvider } from "@addresskit/providers-libaddressinput";
 import { getCountries } from "@addresskit/data";
@@ -8,17 +9,25 @@ import type { Address as AddressType, Field, FieldId, ValidationResult } from "@
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
-import { CheckCircle2, AlertCircle, RotateCcw } from "lucide-react";
+import { CheckCircle2, AlertCircle, RotateCcw, ChevronLeft, Cpu } from "lucide-react";
 
 const provider = createLibaddressinputProvider();
 const engine = createEngine(provider);
 const countries = getCountries();
 
 export default function HeadlessPage() {
-  const [values, setValues] = useState<Partial<AddressType>>({ country: "US" });
+  const [values, setValues] = useState<Partial<AddressType>>({
+    country: "US",
+    line1: "100 Universal City Plaza",
+    locality: "Universal City",
+    administrativeArea: "CA",
+    postalCode: "91608",
+  });
   const [fields, setFields] = useState<Field[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formatted, setFormatted] = useState("");
+  const [formatted, setFormatted] = useState(
+    "100 Universal City Plaza\nUniversal City, CA 91608\nUnited States",
+  );
   const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
 
   const prevCountryRef = useRef<string | null>(values.country ?? null);
@@ -78,12 +87,11 @@ export default function HeadlessPage() {
       errorMap[err.field] = err.message;
     }
     setErrors(errorMap);
-  }
 
-  async function handleFormat() {
-    if (!values.country || !values.line1) return;
-    const formattedAddress = await engine.format(values as AddressType);
-    setFormatted(formattedAddress);
+    if (result.valid) {
+      const formattedAddress = await engine.format(values as AddressType);
+      setFormatted(formattedAddress);
+    }
   }
 
   function handleReset() {
@@ -94,150 +102,171 @@ export default function HeadlessPage() {
   }
 
   return (
-    <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Headless API</h1>
-        <p className="text-muted-foreground">
-          Uses <code>createEngine</code> and <code>getSchema</code> directly to build custom forms with complete control over rendering.
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+      <div className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
+        <Link href="/examples" className="hover:text-foreground inline-flex items-center gap-1">
+          <ChevronLeft className="h-3.5 w-3.5" /> Back to Examples
+        </Link>
+        <span>/</span>
+        <span className="text-foreground font-medium">Headless API</span>
+      </div>
+
+      <div className="mb-8">
+        <div className="flex items-center gap-2 mb-2">
+          <Badge variant="secondary" className="gap-1 text-xs">
+            <Cpu className="h-3 w-3" /> Core Engine
+          </Badge>
+          <Badge variant="outline" className="text-xs">Headless API</Badge>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          Headless Engine & Schema
+        </h1>
+        <p className="mt-1 text-sm text-muted-foreground max-w-3xl">
+          Build bespoke address forms with <code>createEngine</code> and <code>getSchema</code>. Pure logic, full rendering autonomy.
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>Custom Rendered Form</CardTitle>
-              <CardDescription>Schema generated per country without UI component dependencies.</CardDescription>
-            </div>
-            <Badge variant="secondary">Headless Core</Badge>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <label htmlFor="headless-country" className="block text-sm font-medium mb-1.5">
-              Country <span className="text-destructive ml-0.5">*</span>
-            </label>
-            <select
-              id="headless-country"
-              value={values.country ?? ""}
-              onChange={(e) => handleCountryChange(e.target.value)}
-              className="w-full h-10 px-3 rounded-lg border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <option value="">Select country...</option>
-              {countries.map(({ code, name }) => (
-                <option key={code} value={code}>{name} ({code})</option>
-              ))}
-            </select>
-          </div>
-
-          {fields.map((field) => {
-            const val = (values[field.id as keyof AddressType] as string) ?? "";
-            const err = errors[field.id];
-
-            if (field.type === "select" && field.options) {
-              return (
-                <div key={field.id}>
-                  <label htmlFor={`hl-${field.id}`} className="block text-sm font-medium mb-1.5">
-                    {field.label}
-                    {field.required && <span className="text-destructive ml-0.5">*</span>}
-                  </label>
-                  <select
-                    id={`hl-${field.id}`}
-                    value={val}
-                    onChange={(e) => handleFieldChange(field.id, e.target.value)}
-                    className={`w-full h-10 px-3 rounded-lg border bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                      err ? "border-destructive ring-1 ring-destructive" : "border-input"
-                    }`}
-                  >
-                    <option value="">Select {field.label.toLowerCase()}...</option>
-                    {field.options.map((opt) => (
-                      <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </option>
-                    ))}
-                  </select>
-                  {err && <p className="mt-1 text-xs text-destructive">{err}</p>}
-                </div>
-              );
-            }
-
-            return (
-              <div key={field.id}>
-                <label htmlFor={`hl-${field.id}`} className="block text-sm font-medium mb-1.5">
-                  {field.label}
-                  {field.required && <span className="text-destructive ml-0.5">*</span>}
-                </label>
-                <input
-                  id={`hl-${field.id}`}
-                  placeholder={field.placeholder}
-                  value={val}
-                  onChange={(e) => handleFieldChange(field.id, e.target.value)}
-                  className={`w-full h-10 px-3 rounded-lg border bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    err ? "border-destructive ring-1 ring-destructive" : "border-input"
-                  }`}
-                />
-                {err && <p className="mt-1 text-xs text-destructive">{err}</p>}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-7">
+          <Card className="border-border/80">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base">Custom Form Markup</CardTitle>
+                <Badge variant="outline" className="font-mono text-xs">{values.country ?? "No country"}</Badge>
               </div>
-            );
-          })}
-        </CardContent>
-      </Card>
+              <CardDescription className="text-xs">
+                Rendered with plain HTML elements driven by dynamically loaded schema fields.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label htmlFor="hl-country" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                  Country Selection
+                </label>
+                <select
+                  id="hl-country"
+                  value={values.country ?? ""}
+                  onChange={(e) => handleCountryChange(e.target.value)}
+                  className="w-full h-10 px-3 rounded-lg border border-input bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="">Select country...</option>
+                  {countries.map(({ code, name }) => (
+                    <option key={code} value={code}>{name} ({code})</option>
+                  ))}
+                </select>
+              </div>
 
-      <div className="flex flex-wrap gap-3 mt-4">
-        <Button onClick={handleValidate}>Validate</Button>
-        <Button variant="secondary" onClick={handleFormat}>Format</Button>
-        <Button variant="outline" onClick={handleReset}>
-          <RotateCcw className="mr-1.5 h-4 w-4" /> Reset
-        </Button>
-      </div>
+              {fields.map((field) => {
+                const val = (values[field.id as keyof AddressType] as string) ?? "";
+                const err = errors[field.id];
 
-      {validationResult && (
-        <div
-          className={`mt-4 rounded-lg p-4 text-sm border ${
-            validationResult.valid
-              ? "border-green-600/30 bg-green-50/50 dark:bg-green-950/20 text-green-700 dark:text-green-400"
-              : "border-destructive/30 bg-destructive/10 text-destructive"
-          }`}
-        >
-          <div className="flex items-center gap-2 font-medium">
-            {validationResult.valid ? (
-              <>
-                <CheckCircle2 className="h-4 w-4" />
-                Address is valid
-              </>
-            ) : (
-              <>
-                <AlertCircle className="h-4 w-4" />
-                Address validation failed with {validationResult.errors.length} error(s)
-              </>
-            )}
-          </div>
+                if (field.type === "select" && field.options) {
+                  return (
+                    <div key={field.id}>
+                      <label htmlFor={`hl-${field.id}`} className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                        {field.label} {field.required && <span className="text-destructive">*</span>}
+                      </label>
+                      <select
+                        id={`hl-${field.id}`}
+                        value={val}
+                        onChange={(e) => handleFieldChange(field.id, e.target.value)}
+                        className={`w-full h-10 px-3 rounded-lg border bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          err ? "border-destructive ring-1 ring-destructive" : "border-input"
+                        }`}
+                      >
+                        <option value="">Select {field.label.toLowerCase()}...</option>
+                        {field.options.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                      {err && <p className="mt-1 text-xs text-destructive">{err}</p>}
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={field.id}>
+                    <label htmlFor={`hl-${field.id}`} className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                      {field.label} {field.required && <span className="text-destructive">*</span>}
+                    </label>
+                    <input
+                      id={`hl-${field.id}`}
+                      placeholder={field.placeholder}
+                      value={val}
+                      onChange={(e) => handleFieldChange(field.id, e.target.value)}
+                      className={`w-full h-10 px-3 rounded-lg border bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        err ? "border-destructive ring-1 ring-destructive" : "border-input"
+                      }`}
+                    />
+                    {err && <p className="mt-1 text-xs text-destructive">{err}</p>}
+                  </div>
+                );
+              })}
+
+              <div className="mt-6 flex flex-wrap gap-2.5 pt-4 border-t border-border/60">
+                <Button onClick={handleValidate}>Validate & Format</Button>
+                <Button variant="outline" onClick={handleReset}>
+                  <RotateCcw className="mr-1.5 h-4 w-4" /> Reset
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      )}
 
-      {formatted && (
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle>Formatted Postal String</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="whitespace-pre-wrap text-sm bg-muted p-4 rounded-lg font-mono border border-input">
-              {formatted}
-            </pre>
-          </CardContent>
-        </Card>
-      )}
+        <div className="lg:col-span-5 space-y-5">
+          {validationResult && (
+            <div
+              className={`rounded-xl p-4 text-sm border ${
+                validationResult.valid
+                  ? "border-green-600/30 bg-green-50/50 dark:bg-green-950/20 text-green-700 dark:text-green-400"
+                  : "border-destructive/30 bg-destructive/10 text-destructive"
+              }`}
+            >
+              <div className="flex items-center gap-2 font-medium">
+                {validationResult.valid ? (
+                  <>
+                    <CheckCircle2 className="h-4 w-4" />
+                    Schema validation passed
+                  </>
+                ) : (
+                  <>
+                    <AlertCircle className="h-4 w-4" />
+                    Validation failed ({validationResult.errors.length} error{validationResult.errors.length === 1 ? "" : "s"})
+                  </>
+                )}
+              </div>
+            </div>
+          )}
 
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Current State</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <pre className="text-xs bg-muted p-4 rounded-lg overflow-x-auto font-mono border border-input">
-            {JSON.stringify(values, null, 2)}
-          </pre>
-        </CardContent>
-      </Card>
+          <Card className="border-border/80">
+            <CardHeader className="py-3 px-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Formatted Envelope View
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <pre className="whitespace-pre-wrap font-mono text-xs text-foreground p-3.5 rounded-lg bg-muted/50 border border-input leading-relaxed">
+                {formatted || "Click Validate & Format to render postal envelope..."}
+              </pre>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/80">
+            <CardHeader className="py-3 px-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Generated Fields Array
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 pb-4">
+              <pre className="font-mono text-[11px] text-muted-foreground p-3.5 rounded-lg bg-muted/50 border border-input overflow-x-auto max-h-48 overflow-y-auto">
+                {JSON.stringify(fields.map((f) => ({ id: f.id, label: f.label, type: f.type, required: f.required })), null, 2)}
+              </pre>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
